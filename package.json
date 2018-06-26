@@ -1,0 +1,17 @@
+{
+  "name": "airppt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jszip": "^3.1.5",
+    "pptx2html": "^0.3.4",
+    "xml-js": "^1.6.4",
+    "xml2js-es6-promise": "^1.1.1"
+  }
+}

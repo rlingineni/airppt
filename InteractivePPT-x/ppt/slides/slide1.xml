@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<p:sld 
+    xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" 
+    xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" 
+    xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main">
+    <p:cSld>
+        <p:spTree>
+            <p:nvGrpSpPr>
+                <p:cNvPr id="1" name=""/>
+                <p:cNvGrpSpPr/>
+                <p:nvPr/>
+            </p:nvGrpSpPr>
+            <p:grpSpPr>
+                <a:xfrm>
+                    <a:off x="0" y="0"/>
+                    <a:ext cx="0" cy="0"/>
+                    <a:chOff x="0" y="0"/>
+                    <a:chExt cx="0" cy="0"/>
+                </a:xfrm>
+            </p:grpSpPr>
+            <p:sp>
+                <p:nvSpPr>
+                    <p:cNvPr id="4" name="Rectangle 3">
+                        <a:extLst>
+                            <a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
+                                <a16:creationId 
+                                    xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{9CF1445B-2D2E-3C4B-9080-D57F2829FFB6}"/>
+                            </a:ext>
+                        </a:extLst>
+                    </p:cNvPr>
+                    <p:cNvSpPr/>
+                    <p:nvPr/>
+                </p:nvSpPr>
+                <p:spPr>
+                    <a:xfrm>
+                        <a:off x="0" y="0"/>
+                        <a:ext cx="12192000" cy="1300163"/>
+                    </a:xfrm>
+                    <a:prstGeom prst="rect">
+                        <a:avLst/>
+                    </a:prstGeom>
+                </p:spPr>
+                <p:style>
+                    <a:lnRef idx="2">
+                        <a:schemeClr val="dk1">
+                            <a:shade val="50000"/>
+                        </a:schemeClr>
+                    </a:lnRef>
+                    <a:fillRef idx="1">
+                        <a:schemeClr val="dk1"/>
+                    </a:fillRef>
+                    <a:effectRef idx="0">
+                        <a:schemeClr val="dk1"/>
+                    </a:effectRef>
+                    <a:fontRef idx="minor">
+                        <a:schemeClr val="lt1"/>
+                    </a:fontRef>
+                </p:style>
+                <p:txBody>
+                    <a:bodyPr rtlCol="0" anchor="ctr"/>
+                    <a:lstStyle/>
+                    <a:p>
+                        <a:r>
+                            <a:rPr lang="en-US" sz="4800" dirty="0">
+                                <a:latin typeface="+mj-lt"/>
+                            </a:rPr>
+                            <a:t>My PPT</a:t>
+                        </a:r>
+                    </a:p>
+                </p:txBody>
+            </p:sp>
+            <p:sp>
+                <p:nvSpPr>
+                    <p:cNvPr id="5" name="Rectangle 4">
+                        <a:extLst>
+                            <a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
+                                <a16:creationId 
+                                    xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{EB168B72-AE05-104B-BE40-801F369051B4}"/>
+                            </a:ext>
+                        </a:extLst>
+                    </p:cNvPr>
+                    <p:cNvSpPr/>
+                    <p:nvPr/>
+                </p:nvSpPr>
+                <p:spPr>
+                    <a:xfrm>
+                        <a:off x="0" y="1300163"/>
+                        <a:ext cx="12192000" cy="5557837"/>
+                    </a:xfrm>
+                    <a:prstGeom prst="rect">
+                        <a:avLst/>
+                    </a:prstGeom>
+                </p:spPr>
+                <p:style>
+                    <a:lnRef idx="2">
+                        <a:schemeClr val="accent1">
+                            <a:shade val="50000"/>
+                        </a:schemeClr>
+                    </a:lnRef>
+                    <a:fillRef idx="1">
+                        <a:schemeClr val="accent1"/>
+                    </a:fillRef>
+                    <a:effectRef idx="0">
+                        <a:schemeClr val="accent1"/>
+                    </a:effectRef>
+                    <a:fontRef idx="minor">
+                        <a:schemeClr val="lt1"/>
+                    </a:fontRef>
+                </p:style>
+                <p:txBody>
+                    <a:bodyPr rtlCol="0" anchor="ctr"/>
+                    <a:lstStyle/>
+                    <a:p>
+                        <a:pPr algn="ctr"/>
+                        <a:endParaRPr lang="en-US"/>
+                    </a:p>
+                </p:txBody>
+            </p:sp>
+            <p:sp>
+                <p:nvSpPr>
+                    <p:cNvPr id="6" name="TextBox 5">
+                        <a:extLst>
+                            <a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
+                                <a16:creationId 
+                                    xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{8DF527AF-AA02-C240-A6B7-D1C74F1EC8A2}"/>
+                            </a:ext>
+                        </a:extLst>
+                    </p:cNvPr>
+                    <p:cNvSpPr txBox="1"/>
+                    <p:nvPr/>
+                </p:nvSpPr>
+                <p:spPr>
+                    <a:xfrm>
+                        <a:off x="1057274" y="2306938"/>
+                        <a:ext cx="2459831" cy="646331"/>
+                    </a:xfrm>
+                    <a:prstGeom prst="rect">
+                        <a:avLst/>
+                    </a:prstGeom>
+                    <a:noFill/>
+                </p:spPr>
+                <p:txBody>
+                    <a:bodyPr wrap="square" rtlCol="0">
+                        <a:spAutoFit/>
+                    </a:bodyPr>
+                    <a:lstStyle/>
+                    <a:p>
+                        <a:r>
+                            <a:rPr lang="en-US" sz="3600" b="1" dirty="0"/>
+                            <a:t>Username:</a:t>
+                        </a:r>
+                    </a:p>
+                </p:txBody>
+            </p:sp>
+            <p:sp>
+                <p:nvSpPr>
+                    <p:cNvPr id="7" name="Rounded Rectangle 6" descr="input box for the username" title="Username">
+                        <a:hlinkClick r:id="" action="ppaction://macro?name=TextMe"/>
+                        <a:extLst>
+                            <a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
+                                <a16:creationId 
+                                    xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{83FEB804-8D56-D446-AA7E-32B42ABE6280}"/>
+                            </a:ext>
+                        </a:extLst>
+                    </p:cNvPr>
+                    <p:cNvSpPr/>
+                    <p:nvPr/>
+                </p:nvSpPr>
+                <p:spPr>
+                    <a:xfrm>
+                        <a:off x="3645693" y="2259832"/>
+                        <a:ext cx="5626894" cy="726966"/>
+                    </a:xfrm>
+                    <a:prstGeom prst="roundRect">
+                        <a:avLst/>
+                    </a:prstGeom>
+                </p:spPr>
+                <p:style>
+                    <a:lnRef idx="2">
+                        <a:schemeClr val="accent6"/>
+                    </a:lnRef>
+                    <a:fillRef idx="1">
+                        <a:schemeClr val="lt1"/>
+                    </a:fillRef>
+                    <a:effectRef idx="0">
+                        <a:schemeClr val="accent6"/>
+                    </a:effectRef>
+                    <a:fontRef idx="minor">
+                        <a:schemeClr val="dk1"/>
+                    </a:fontRef>
+                </p:style>
+                <p:txBody>
+                    <a:bodyPr rtlCol="0" anchor="ctr"/>
+                    <a:lstStyle/>
+                    <a:p>
+                        <a:r>
+                            <a:rPr lang="en-US" dirty="0" err="1">
+                                <a:latin typeface="Helvetica" pitchFamily="2" charset="0"/>
+                            </a:rPr>
+                            <a:t>google.com</a:t>
+                        </a:r>
+                        <a:endParaRPr lang="en-US" dirty="0">
+                            <a:latin typeface="Helvetica" pitchFamily="2" charset="0"/>
+                        </a:endParaRPr>
+                    </a:p>
+                </p:txBody>
+            </p:sp>
+            <p:sp>
+                <p:nvSpPr>
+                    <p:cNvPr id="8" name="Rounded Rectangle 7">
+                        <a:hlinkClick r:id="" action="ppaction://macro?name=TextMe"/>
+                        <a:extLst>
+                            <a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
+                                <a16:creationId 
+                                    xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{85797EDF-ED18-6E47-B0C1-4E506799197D}"/>
+                            </a:ext>
+                        </a:extLst>
+                    </p:cNvPr>
+                    <p:cNvSpPr/>
+                    <p:nvPr/>
+                </p:nvSpPr>
+                <p:spPr>
+                    <a:xfrm>
+                        <a:off x="3645693" y="3289242"/>
+                        <a:ext cx="5626894" cy="726966"/>
+                    </a:xfrm>
+                    <a:prstGeom prst="roundRect">
+                        <a:avLst/>
+                    </a:prstGeom>
+                </p:spPr>
+                <p:style>
+                    <a:lnRef idx="2">
+                        <a:schemeClr val="accent6"/>
+                    </a:lnRef>
+                    <a:fillRef idx="1">
+                        <a:schemeClr val="lt1"/>
+                    </a:fillRef>
+                    <a:effectRef idx="0">
+                        <a:schemeClr val="accent6"/>
+                    </a:effectRef>
+                    <a:fontRef idx="minor">
+                        <a:schemeClr val="dk1"/>
+                    </a:fontRef>
+                </p:style>
+                <p:txBody>
+                    <a:bodyPr rtlCol="0" anchor="ctr"/>
+                    <a:lstStyle/>
+                    <a:p>
+                        <a:r>
+                            <a:rPr lang="en-US">
+                                <a:latin typeface="Helvetica" pitchFamily="2" charset="0"/>
+                            </a:rPr>
+                            <a:t>pass</a:t>
+                        </a:r>
+                        <a:endParaRPr lang="en-US" dirty="0">
+                            <a:latin typeface="Helvetica" pitchFamily="2" charset="0"/>
+                        </a:endParaRPr>
+                    </a:p>
+                </p:txBody>
+            </p:sp>
+            <p:sp>
+                <p:nvSpPr>
+                    <p:cNvPr id="9" name="TextBox 8">
+                        <a:extLst>
+                            <a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
+                                <a16:creationId 
+                                    xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{4BAF2EA7-F883-794E-881B-04952DD819A3}"/>
+                            </a:ext>
+                        </a:extLst>
+                    </p:cNvPr>
+                    <p:cNvSpPr txBox="1"/>
+                    <p:nvPr/>
+                </p:nvSpPr>
+                <p:spPr>
+                    <a:xfrm>
+                        <a:off x="1185862" y="3347242"/>
+                        <a:ext cx="2459831" cy="646331"/>
+                    </a:xfrm>
+                    <a:prstGeom prst="rect">
+                        <a:avLst/>
+                    </a:prstGeom>
+                    <a:noFill/>
+                </p:spPr>
+                <p:txBody>
+                    <a:bodyPr wrap="square" rtlCol="0">
+                        <a:spAutoFit/>
+                    </a:bodyPr>
+                    <a:lstStyle/>
+                    <a:p>
+                        <a:r>
+                            <a:rPr lang="en-US" sz="3600" b="1" dirty="0"/>
+                            <a:t>Password:</a:t>
+                        </a:r>
+                    </a:p>
+                </p:txBody>
+            </p:sp>
+        </p:spTree>
+        <p:extLst>
+            <p:ext uri="{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}">
+                <p14:creationId 
+                    xmlns:p14="http://schemas.microsoft.com/office/powerpoint/2010/main" val="1494243179"/>
+            </p:ext>
+        </p:extLst>
+    </p:cSld>
+    <p:clrMapOvr>
+        <a:masterClrMapping/>
+    </p:clrMapOvr>
+</p:sld>

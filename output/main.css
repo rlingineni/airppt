@@ -1,0 +1,32 @@
+.container{
+    margin: 30px 50px 30px 50px;
+    border: 2px solid #00A;
+    background-color:#FFF;
+}
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(80px, auto);
+    width: 100vw;
+  }
+  .one {
+    grid-column: 4/10;
+    grid-row: 3/9;
+    background: silver;
+  }
+  .two { 
+    grid-column: 11/12;
+    grid-row: 10 / 12;
+    background: lightpink;
+  }
+  .three {
+    grid-column: 9/11;
+    grid-row:  10/12;
+    background: lightblue;
+  }
+ 
+  .LetterBox-style{
+    grid-row:3 / 9;
+    grid-column:4 / 10
+    }
