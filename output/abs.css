@@ -1,0 +1,31 @@
+#NextLetterButton.position {
+    position: absolute;
+    top: 597.6567979002625px;
+    left: 1106.5727034120735px;
+    width: 88.88892388451444px;
+    height: 85.33333333333334px;
+}
+
+#RestartButton.position {
+    position: absolute;
+    top: 599.4344356955381px;
+    left: 926.5453018372704px;
+    width: 149.33333333333334px;
+    height: 85.33343832020998px;
+}
+
+#LetterBox.position {
+    position: absolute;
+    top: 136.76713910761154px;
+    left: 366.9040419947507px;
+    width: 587.2576377952756px;
+    height: 361.6438845144357px;
+}
+
+.wrapper {
+    position: fixed;
+    width: 1280px;
+    height: 720px;
+    border-color: #000000;
+    border-style: dotted;
+}

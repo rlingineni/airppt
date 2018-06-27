@@ -63,7 +63,6 @@ GridScaler.prototype.getElementGridPlacement = function (origin, offset) {
         rowRange = beginRow
     }
 
-    console.log(columnRange, rowRange);
 
     return {
         'grid-row': rowRange,

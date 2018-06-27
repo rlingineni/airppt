@@ -9,8 +9,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "beautify": "0.0.8",
+    "jquery": "^3.3.1",
+    "jsdom": "^11.11.0",
     "jszip": "^3.1.5",
     "pptx2html": "^0.3.4",
+    "string-template": "^1.0.0",
     "xml-js": "^1.6.4",
     "xml2js-es6-promise": "^1.1.1"
   }

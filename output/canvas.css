@@ -5,20 +5,23 @@
 }
 .wrapper {
     position: fixed;
-    left: 12%;
     width: 1280px;
     height: 720px;
     border-color: #000000;
     border-style: dotted
   }
-  .one {
+  
+  #one.style{
+    background-color: red;
+  }
+  #one.position{
     position: absolute;
     top: 136.76713910761154px;
     right: 366.9040419947507px;
     width: 587.2576377952756px;
     height:  361.6438845144357px;
-    background-color: red;
   }
+
   .two { 
     position: absolute;
     top: 599.4344356955381px;
