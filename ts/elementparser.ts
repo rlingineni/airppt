@@ -3,10 +3,12 @@ import { CheckValidObject as checkPath } from "@helpers/checkobj";
 
 class PowerpointElementParser {
 	private slideShowAttributes;
+	private slideShowTheme;
 	private element;
 
-	constructor(slideShowGlobals) {
+	constructor(slideShowGlobals, slideShowTheme) {
 		this.slideShowAttributes = slideShowGlobals;
+		this.slideShowTheme = slideShowTheme;
 	}
 
 	public getProcessedElement(rawElement): PowerpointElement {
@@ -14,12 +16,17 @@ class PowerpointElementParser {
 		let elementName: string =
 			this.element["p:nvSpPr"][0]["p:cNvPr"][0]["$"]["title"] ||
 			this.element["p:nvSpPr"][0]["p:cNvPr"][0]["$"]["name"].replace(/\s/g, "");
+
+		//elements must have a position, or else skip them TO-DO: Allow Placeholder positions
+		if (!this.element["p:spPr"][0]["a:xfrm"]) {
+			return null;
+		}
+		console.log(elementName);
 		let elementPosition = this.element["p:spPr"][0]["a:xfrm"][0]["a:off"][0]["$"];
 		let elementPresetType = this.element["p:spPr"][0]["a:prstGeom"][0]["$"]["prst"];
 		let elementOffsetPosition = this.element["p:spPr"][0]["a:xfrm"][0]["a:ext"][0]["$"];
 
 		let paragraphInfo = this.element["p:txBody"][0]["a:p"][0];
-
 		let pptElement: PowerpointElement = {
 			name: elementName,
 			type: this.determineObjectType(elementPresetType),
@@ -33,7 +40,7 @@ class PowerpointElementParser {
 			},
 			paragraph: this.extractParagraphElements(paragraphInfo),
 			shape: {
-				fillColor: this.getSolidFillColor(this.element["a:solidFill"]) || "#FFFFFF"
+				fillColor: this.getShapeFillColor(this.element) || "FFFFFF"
 				//TO-DO Add Border Element
 			}
 		};
@@ -64,7 +71,7 @@ class PowerpointElementParser {
 			size: checkPath(textProperties, '["$"].sz') || 12,
 			fontAttributes: this.determineFontAttributes(textProperties["$"]),
 			font: checkPath(textProperties, '["a:latin"][0]["$"]["typeface"]') || "Helvetica",
-			fillColor: this.getSolidFillColor(textProperties["a:solidFill"]) || "#000000"
+			fillColor: this.getTextColors(textProperties) || "#000000"
 		};
 
 		return textPropertiesElement;
@@ -126,12 +133,54 @@ class PowerpointElementParser {
 		return paragraphPropertiesElement;
 	}
 
-	private getSolidFillColor(solidFillProperties): string {
-		if (!solidFillProperties) {
+	private getShapeFillColor(element): string {
+		//spPR takes precdence
+		let shapeProperties = element["p:spPr"];
+		if (shapeProperties["a:solidFill"]) {
+			//determine if it is theme or solid fill
+			return (
+				checkPath(shapeProperties, '["a:solidFill"]["0"]["a:srgbClr"]["0"]["$"]["val"]') ||
+				this.getThemeColor(checkPath(shapeProperties, '["a:solidFill"]["0"]["a:schemeClr"]["0"]["$"]["val"]')) ||
+				"FFFFFF"
+			);
+		}
+
+		//spPR[NOFILL] return null
+		if (shapeProperties["a:noFill"]) {
 			return null;
 		}
-		return checkPath(solidFillProperties, '["0"]["a:srgbClr"]["0"]["$"]["val"]') || "#FFFFFF"; //TO-DO: Handle if fill color is from theme
+
+		//look at p:style for shape default theme values
+		let shapeStyle = element["p:style"][0];
+		return this.getThemeColor(checkPath(shapeStyle, '["a:fillRef"]["0"]["a:schemeClr"]["0"]["$"]["val"]')) || "FFFFFF";
 	}
+
+	private getTextColors(textElement): string {
+		if ("a:solidFill" in textElement) {
+			return (
+				checkPath(textElement, '["a:solidFill"]["0"]["a:srgbClr"]["0"]["$"]["val"]') ||
+				this.getThemeColor(checkPath(textElement, '["a:solidFill"]["0"]["a:schemeClr"]["0"]["$"]["val"]')) ||
+				"000000"
+			);
+		}
+	}
+
+	private getThemeColor(themeClr) {
+		if (!themeClr) {
+			return null;
+		}
+
+		console.log("looking up theme clr");
+		let colors = this.slideShowTheme["a:theme"]["a:themeElements"][0]["a:clrScheme"][0];
+		let targetTheme = "a:" + themeClr;
+		if (targetTheme in colors) {
+			return colors[targetTheme][0]["a:srgbClr"][0]["$"]["val"];
+		}
+
+		return null;
+	}
+
+	private retrieveFromColorScheme() {}
 
 	private determineObjectType(prst): ElementType {
 		switch (prst) {

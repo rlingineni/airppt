@@ -15,9 +15,11 @@ async function loadZip() {
 	let zipResult = await zip.loadAsync(data);
 
 	let slideShowAttributes = await parseSlideAttributes(zipResult, "ppt/presentation.xml");
+	let slideShowTheme = await parseSlideAttributes(zipResult, "ppt/theme/theme1.xml");
+	//console.log(JSON.stringify(slideShowTheme));
 	let slideSizeX = slideShowAttributes["p:presentation"]["p:sldSz"][0]["$"]["cx"];
 	let slideSizeY = slideShowAttributes["p:presentation"]["p:sldSz"][0]["$"]["cy"];
-	let pptElementParser = new PowerpointElementParser(slideShowAttributes);
+	let pptElementParser = new PowerpointElementParser(slideShowAttributes, slideShowTheme);
 	//TO-DO:
 
 	//Parse ppt/presentation.xml and get size
@@ -25,14 +27,17 @@ async function loadZip() {
 	let layoutGen = new LayoutGenerator();
 	let htmlGen = new HTMLGenerator();
 	//Place elements in right position for HTML
-	let slideAttributes = await parseSlideAttributes(zipResult, "ppt/slides/slide2.xml");
+	let slideAttributes = await parseSlideAttributes(zipResult, "ppt/slides/slide5.xml");
+	console.log(JSON.stringify(slideAttributes));
 	let slideElements = slideAttributes["p:sld"]["p:cSld"][0]["p:spTree"][0]["p:sp"];
 	for (let element of slideElements) {
 		//parse element body
 		let pptElement = pptElementParser.getProcessedElement(element);
-		console.log(pptElement);
-		layoutGen.generateElementCSS(scaler, pptElement);
-		htmlGen.addElementToDOM(element.name);
+		if (pptElement) {
+			console.log(pptElement);
+			layoutGen.generateElementCSS(scaler, pptElement);
+			htmlGen.addElementToDOM(element.name);
+		}
 	}
 
 	//Convert PPT shapes
