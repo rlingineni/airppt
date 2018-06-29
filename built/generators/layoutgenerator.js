@@ -1,13 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const ShapeRenderers = require("@renderers/shapes");
 /**
  * Generates CSS Layout and Item Placement Classes as Per Slide
  */
 const beautify = require("beautify");
 class LayoutGenerator {
-    constructor() {
+    constructor(slideShowGlobals, slideShowTheme) {
         this.gridCSS = [];
         this.absoluteCSS = [];
+        this.slideShowGlobals = slideShowGlobals;
+        this.slideShowTheme = slideShowTheme;
     }
     generateCSS(obj) {
         const selectors = Object.keys(obj);
@@ -39,27 +42,28 @@ class LayoutGenerator {
         }
         return css;
     }
-    generateElementCSS(scaler, element) {
-        let absCSS = this.generateAbsoluteCSS(scaler, element);
-        let gridCSS = this.generateGridCSS(scaler, element);
-        return { absCSS, gridCSS };
+    generateElementLayoutCSS(scaler, element) {
+        this.generateAbsoluteCSS(scaler, element);
+        this.generateGridCSS(scaler, element);
+        this.generateShapeCSS(scaler, element);
+        return { absCSS: this.absoluteCSS, gridCSS: this.gridCSS };
     }
+    generateShapeCSS(scaler, element) {
+        let css = ShapeRenderers[element.shapeType](scaler, element, this.slideShowGlobals, this.slideShowTheme);
+        this.absoluteCSS.push(css);
+        this.gridCSS.push(css);
+    }
+    generateParagraphCSS(element) { }
     generateAbsoluteCSS(scaler, element) {
         let planeSize = scaler.getNewPlaneSize();
         let scaledPositionCoordinates = scaler.getScaledCoordinate({
             x: element.elementPosition.x,
             y: element.elementPosition.y
         });
-        let scaledOffsetCoordinates = scaler.getScaledCoordinate({
-            x: element.elementOffsetPosition.cx,
-            y: element.elementOffsetPosition.cy
-        });
         let cssPosition = {
             position: "absolute",
             top: scaledPositionCoordinates.y + "px",
-            left: scaledPositionCoordinates.x + "px",
-            width: scaledOffsetCoordinates.x + "px",
-            height: scaledOffsetCoordinates.y + "px"
+            left: scaledPositionCoordinates.x + "px"
         };
         let elementStyleKey = "#" + element.name + ".position";
         let layoutStyle = {};

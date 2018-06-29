@@ -1,6 +1,7 @@
 export interface PowerpointElement {
 	name: string; //or the name combined
-	type: ElementType; //any preset types or others such as "images","textboxes","media"
+	shapeType: ElementType; //
+	speciality: SpecialityType; //Do something special such as "images","textboxes","media"
 	elementPosition: {
 		//location to place the element
 		x: number;
@@ -39,6 +40,7 @@ export interface PowerpointElement {
 	links?: {
 		//wherever or whichever element this might link do
 	};
+	raw: any; //the entire element object
 }
 
 export enum ElementType {
@@ -74,4 +76,10 @@ export enum TextAlignment {
 	Left,
 	Right,
 	Justified
+}
+
+export enum SpecialityType {
+	Textbox = "Textbox",
+	Image = "Image",
+	None = "None"
 }

@@ -1,13 +1,13 @@
-import { PowerpointElement, ElementType, TextAlignment, FontAttributes } from "@models/pptelement";
+import { PowerpointElement, ElementType, TextAlignment, FontAttributes, SpecialityType } from "@models/pptelement";
 import { CheckValidObject as checkPath } from "@helpers/checkobj";
 
 class PowerpointElementParser {
-	private slideShowAttributes;
+	private slideShowGlobals;
 	private slideShowTheme;
 	private element;
 
 	constructor(slideShowGlobals, slideShowTheme) {
-		this.slideShowAttributes = slideShowGlobals;
+		this.slideShowGlobals = slideShowGlobals;
 		this.slideShowTheme = slideShowTheme;
 	}
 
@@ -29,7 +29,8 @@ class PowerpointElementParser {
 		let paragraphInfo = this.element["p:txBody"][0]["a:p"][0];
 		let pptElement: PowerpointElement = {
 			name: elementName,
-			type: this.determineObjectType(elementPresetType),
+			shapeType: this.determineShapeType(elementPresetType),
+			speciality: this.determineSpecialityType(this.element),
 			elementPosition: {
 				x: elementPosition.x,
 				y: elementPosition.y
@@ -42,7 +43,8 @@ class PowerpointElementParser {
 			shape: {
 				fillColor: this.getShapeFillColor(this.element) || "FFFFFF"
 				//TO-DO Add Border Element
-			}
+			},
+			raw: rawElement
 		};
 
 		return pptElement;
@@ -56,7 +58,7 @@ class PowerpointElementParser {
 		let pptTextElement: PowerpointElement["paragraph"] = {
 			text: textElement["a:r"][0]["a:t"].toString() || "",
 			textCharacterProperties: this.determineTextProperties(checkPath(textElement, '["a:r"][0]["a:rPr"][0]')),
-			paragraphProperties: this.determineParagraphProperties(checkPath(textElement, '["a:r"][0]["a:pPr"][0]'))
+			paragraphProperties: this.determineParagraphProperties(checkPath(textElement, '["a:pPr"][0]'))
 		};
 		return pptTextElement;
 	}
@@ -104,7 +106,6 @@ class PowerpointElementParser {
 		if (!paragraphProperties) {
 			return null;
 		}
-		console.log(paragraphProperties);
 		let alignment: TextAlignment = TextAlignment.Left;
 		if (paragraphProperties["$"]["algn"]) {
 			switch (paragraphProperties["$"]["algn"]) {
@@ -125,7 +126,7 @@ class PowerpointElementParser {
 					break;
 			}
 		}
-
+		console.log("align", alignment);
 		let paragraphPropertiesElement: PowerpointElement["paragraph"]["paragraphProperties"] = {
 			alignment
 		};
@@ -135,7 +136,7 @@ class PowerpointElementParser {
 
 	private getShapeFillColor(element): string {
 		//spPR takes precdence
-		let shapeProperties = element["p:spPr"];
+		let shapeProperties = element["p:spPr"][0];
 		if (shapeProperties["a:solidFill"]) {
 			//determine if it is theme or solid fill
 			return (
@@ -180,9 +181,7 @@ class PowerpointElementParser {
 		return null;
 	}
 
-	private retrieveFromColorScheme() {}
-
-	private determineObjectType(prst): ElementType {
+	private determineShapeType(prst): ElementType {
 		switch (prst) {
 			case "rect":
 				return ElementType.Rectangle;
@@ -201,6 +200,15 @@ class PowerpointElementParser {
 			default:
 				return ElementType.Rectangle;
 		}
+	}
+
+	private determineSpecialityType(element): SpecialityType {
+		if (checkPath(element, '["p:nvSpPr"][0]["p:cNvSpPr"][0]["$"]["txBox"]') == 1) {
+			console.log("is textbox");
+			return SpecialityType.Textbox;
+		}
+
+		return SpecialityType.None;
 	}
 }
 
