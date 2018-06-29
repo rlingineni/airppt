@@ -23,19 +23,19 @@ function loadZip() {
         var zip = new JSZip();
         let data = yield getData("../TeluguApp.pptx");
         let zipResult = yield zip.loadAsync(data);
-        let slideShowAttributes = yield parseSlideAttributes(zipResult, "ppt/presentation.xml");
+        let slideShowGlobals = yield parseSlideAttributes(zipResult, "ppt/presentation.xml");
         let slideShowTheme = yield parseSlideAttributes(zipResult, "ppt/theme/theme1.xml");
         //console.log(JSON.stringify(slideShowTheme));
-        let slideSizeX = slideShowAttributes["p:presentation"]["p:sldSz"][0]["$"]["cx"];
-        let slideSizeY = slideShowAttributes["p:presentation"]["p:sldSz"][0]["$"]["cy"];
-        let pptElementParser = new elementparser_1.default(slideShowAttributes, slideShowTheme);
+        let slideSizeX = slideShowGlobals["p:presentation"]["p:sldSz"][0]["$"]["cx"];
+        let slideSizeY = slideShowGlobals["p:presentation"]["p:sldSz"][0]["$"]["cy"];
+        let pptElementParser = new elementparser_1.default(slideShowGlobals, slideShowTheme);
         //TO-DO:
         //Parse ppt/presentation.xml and get size
         let scaler = new gridscalerts_1.default(slideSizeX, slideSizeY, 12);
-        let layoutGen = new layoutgenerator_1.default();
+        let layoutGen = new layoutgenerator_1.default(slideShowGlobals, slideShowTheme);
         let htmlGen = new htmlgenerator_1.default();
         //Place elements in right position for HTML
-        let slideAttributes = yield parseSlideAttributes(zipResult, "ppt/slides/slide5.xml");
+        let slideAttributes = yield parseSlideAttributes(zipResult, "ppt/slides/slide2.xml");
         console.log(JSON.stringify(slideAttributes));
         let slideElements = slideAttributes["p:sld"]["p:cSld"][0]["p:spTree"][0]["p:sp"];
         for (let element of slideElements) {
@@ -43,8 +43,8 @@ function loadZip() {
             let pptElement = pptElementParser.getProcessedElement(element);
             if (pptElement) {
                 console.log(pptElement);
-                layoutGen.generateElementCSS(scaler, pptElement);
-                htmlGen.addElementToDOM(element.name);
+                layoutGen.generateElementLayoutCSS(scaler, pptElement);
+                htmlGen.addElementToDOM(pptElement);
             }
         }
         //Convert PPT shapes

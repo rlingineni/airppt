@@ -1,41 +1,39 @@
-#Rectangle4.position {
+#NextLetterButton.position {
     position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 1280px;
-    height: 107.58624671916012px;
+    top: 597.6567979002625px;
+    left: 1106.5727034120735px;
 }
 
-#TextBox6.position {
-    position: absolute;
-    top: 305.73228346456693px;
-    left: 354.20682414698166px;
-    width: 529.6552230971129px;
-    height: 38.77501312335958px;
+#NextLetterButton.shape {
+    width: 0;
+    height: 0;
+    border-top: 42.66666666666667px solid transparent;
+    border-left: 88.88892388451444px solid #4472C4;
+    border-bottom: 42.66666666666667px solid transparent;
 }
 
-#Rectangle9.position {
+#RestartButton.position {
     position: absolute;
-    top: 183.72419947506563px;
-    left: 354.20682414698166px;
-    width: 529.6552230971129px;
-    height: 107.58624671916012px;
+    top: 599.4344356955381px;
+    left: 926.5453018372704px;
 }
 
-#Rectangle11.position {
-    position: absolute;
-    top: 25.714330708661418px;
-    left: 18.85711286089239px;
-    width: 142.28577427821523px;
-    height: 54.85711286089239px;
+#RestartButton.shape {
+    width: 149.33333333333334px;
+    height: 85.33343832020998px;
+    background: #F44D6A;
 }
 
-#Rectangle12.position {
+#LetterBox.position {
     position: absolute;
-    top: 25.714330708661418px;
-    left: 180px;
-    width: 142.28577427821523px;
-    height: 54.85711286089239px;
+    top: 136.76713910761154px;
+    left: 366.9040419947507px;
+}
+
+#LetterBox.shape {
+    width: 587.2576377952756px;
+    height: 361.6438845144357px;
+    background: #FFFFFF;
 }
 
 .wrapper {
