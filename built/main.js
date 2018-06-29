@@ -24,23 +24,28 @@ function loadZip() {
         let data = yield getData("../TeluguApp.pptx");
         let zipResult = yield zip.loadAsync(data);
         let slideShowAttributes = yield parseSlideAttributes(zipResult, "ppt/presentation.xml");
+        let slideShowTheme = yield parseSlideAttributes(zipResult, "ppt/theme/theme1.xml");
+        //console.log(JSON.stringify(slideShowTheme));
         let slideSizeX = slideShowAttributes["p:presentation"]["p:sldSz"][0]["$"]["cx"];
         let slideSizeY = slideShowAttributes["p:presentation"]["p:sldSz"][0]["$"]["cy"];
-        let pptElementParser = new elementparser_1.default(slideShowAttributes);
+        let pptElementParser = new elementparser_1.default(slideShowAttributes, slideShowTheme);
         //TO-DO:
         //Parse ppt/presentation.xml and get size
         let scaler = new gridscalerts_1.default(slideSizeX, slideSizeY, 12);
         let layoutGen = new layoutgenerator_1.default();
         let htmlGen = new htmlgenerator_1.default();
         //Place elements in right position for HTML
-        let slideAttributes = yield parseSlideAttributes(zipResult, "ppt/slides/slide2.xml");
+        let slideAttributes = yield parseSlideAttributes(zipResult, "ppt/slides/slide5.xml");
+        console.log(JSON.stringify(slideAttributes));
         let slideElements = slideAttributes["p:sld"]["p:cSld"][0]["p:spTree"][0]["p:sp"];
         for (let element of slideElements) {
             //parse element body
             let pptElement = pptElementParser.getProcessedElement(element);
-            console.log(pptElement);
-            layoutGen.generateElementCSS(scaler, pptElement);
-            htmlGen.addElementToDOM(element.name);
+            if (pptElement) {
+                console.log(pptElement);
+                layoutGen.generateElementCSS(scaler, pptElement);
+                htmlGen.addElementToDOM(element.name);
+            }
         }
         //Convert PPT shapes
         //Create Output HTML file
