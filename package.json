@@ -1,25 +1,36 @@
 {
-  "name": "airppt",
-  "version": "1.0.0",
-  "description": "",
-  "main": "main.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@types/node": "^10.5.0",
-    "beautify": "0.0.8",
-    "jquery": "^3.3.1",
-    "jsdom": "^11.11.0",
-    "jszip": "^3.1.5",
-    "pptx2html": "^0.3.4",
-    "string-template": "^1.0.0",
-    "xml-js": "^1.6.4",
-    "xml2js-es6-promise": "^1.1.1"
-  },
-  "devDependencies": {
-    "@types/jszip": "^3.1.4"
-  }
+	"name": "airppt",
+	"version": "1.0.0",
+	"description": "",
+	"main": "main.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@types/jsonpath": "^0.2.0",
+		"@types/lodash": "^4.14.110",
+		"@types/node": "^10.5.0",
+		"beautify": "0.0.8",
+		"jquery": "^3.3.1",
+		"jsdom": "^11.11.0",
+		"jsonpath": "^1.0.0",
+		"jszip": "^3.1.5",
+		"lodash": "^4.17.10",
+		"module-alias": "^2.1.0",
+		"pptx2html": "^0.3.4",
+		"string-template": "^1.0.0",
+		"xml-js": "^1.6.4",
+		"xml2js-es6-promise": "^1.1.1"
+	},
+	"devDependencies": {
+		"@types/jszip": "^3.1.4"
+	},
+	"_moduleAliases": {
+		"@helpers": "built/helpers/",
+		"@models": "built/models/",
+		"@generators": "built/generators/",
+		"@renderers": "built/renderers/"
+	}
 }

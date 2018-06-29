@@ -47,8 +47,8 @@ class GridScaler {
             rowRange = beginRow.toString();
         }
         return {
-            'grid-row': rowRange,
-            'grid-column': columnRange
+            "grid-row": rowRange,
+            "grid-column": columnRange
         };
     }
 }
