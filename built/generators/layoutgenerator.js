@@ -45,7 +45,7 @@ class LayoutGenerator {
     generateElementLayoutCSS(scaler, element) {
         this.generateAbsoluteCSS(scaler, element);
         this.generateGridCSS(scaler, element);
-        this.generateShapeCSS(scaler, element);
+        //this.generateShapeCSS(scaler, element);
         return { absCSS: this.absoluteCSS, gridCSS: this.gridCSS };
     }
     generateShapeCSS(scaler, element) {
@@ -89,3 +89,8 @@ class LayoutGenerator {
     }
 }
 exports.default = LayoutGenerator;
+var PositionType;
+(function (PositionType) {
+    PositionType[PositionType["Grid"] = 0] = "Grid";
+    PositionType[PositionType["Absolute"] = 1] = "Absolute";
+})(PositionType = exports.PositionType || (exports.PositionType = {}));

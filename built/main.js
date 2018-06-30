@@ -13,10 +13,12 @@ const JSZip = require("jszip");
 const fs = require("fs");
 const xml2js = require("xml2js-es6-promise");
 const gridscalerts_1 = require("./gridscalerts");
-const layoutgenerator_1 = require("@generators/layoutgenerator");
+const cssgenerator_1 = require("@generators/cssgenerator");
 const htmlgenerator_1 = require("@generators/htmlgenerator");
 const elementparser_1 = require("./elementparser");
 const filewriter_1 = require("@generators/filewriter");
+const ShapeRenderers = require("@renderers/shapes");
+const css_1 = require("@models/css");
 loadZip();
 function loadZip() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -32,26 +34,28 @@ function loadZip() {
         //TO-DO:
         //Parse ppt/presentation.xml and get size
         let scaler = new gridscalerts_1.default(slideSizeX, slideSizeY, 12);
-        let layoutGen = new layoutgenerator_1.default(slideShowGlobals, slideShowTheme);
         let htmlGen = new htmlgenerator_1.default();
         //Place elements in right position for HTML
         let slideAttributes = yield parseSlideAttributes(zipResult, "ppt/slides/slide2.xml");
         console.log(JSON.stringify(slideAttributes));
         let slideElements = slideAttributes["p:sld"]["p:cSld"][0]["p:spTree"][0]["p:sp"];
+        let elementsCSS = [];
         for (let element of slideElements) {
             //parse element body
             let pptElement = pptElementParser.getProcessedElement(element);
             if (pptElement) {
                 console.log(pptElement);
-                layoutGen.generateElementLayoutCSS(scaler, pptElement);
+                let elementCSS = new ShapeRenderers[pptElement.shapeType](scaler, pptElement, slideShowGlobals, slideShowTheme, css_1.PositionType.Absolute).getCSS();
+                elementsCSS.push(elementCSS);
+                //layoutGen.generateElementLayoutCSS(scaler, pptElement);
                 htmlGen.addElementToDOM(pptElement);
             }
         }
         //Convert PPT shapes
         //Create Output HTML file
         //console.log(htmlGen.getGeneratedHTML())
-        filewriter_1.default("abs.css", layoutGen.getCSS("abs"));
-        filewriter_1.default("grid.css", layoutGen.getCSS("grid"));
+        filewriter_1.default("abs.css", cssgenerator_1.default.generateCSS(css_1.PositionType.Absolute, elementsCSS));
+        filewriter_1.default("grid.css", cssgenerator_1.default.generateCSS(css_1.PositionType.Grid, elementsCSS));
         filewriter_1.default("index.html", htmlGen.getGeneratedHTML());
     });
 }
