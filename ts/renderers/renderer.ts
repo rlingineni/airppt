@@ -1,16 +1,34 @@
 import GridScaler from "gridscalerts";
 import { PowerpointElement } from "@models/pptelement";
+import { PositionType } from "@models/css";
+
+const beautify = require("beautify");
 
 abstract class ElementRenderer {
 	private elementCSS = [];
 	private elementHTML = [];
 
-	constructor(private scaler: GridScaler, private element: PowerpointElement, private rawSlideShowGlobals, private rawSlideShowTheme) {
-		this.generateElementAbsolutePosition();
-		//this.generateElementGridPosition();
+	constructor(
+		private scaler: GridScaler,
+		private element: PowerpointElement,
+		private rawSlideShowGlobals,
+		private rawSlideShowTheme,
+		positionType: PositionType
+	) {
+		if (positionType == PositionType.Absolute) {
+			this.generateElementAbsolutePosition();
+		} else {
+			this.generateElementGridPosition();
+		}
 	}
 
-	generateParagraphCSS(): string {
+	public getCSS(): string {
+		return beautify(this.elementCSS.join(""), { format: "css" });
+	}
+
+	public abstract render(): string;
+
+	protected generateGenericParagraphCSS(elementID): string {
 		//does some default work
 		return "css";
 	}
@@ -31,9 +49,27 @@ abstract class ElementRenderer {
 		this.elementCSS.push(css);
 		return css;
 	}
-	private generateElementGridPosition() {}
 
-	public generateCSSfromObject(obj: any) {
+	private generateElementGridPosition() {
+		let cssPosition = this.scaler.getElementGridPlacement(
+			{
+				x: this.element.elementPosition.x,
+				y: this.element.elementPosition.y
+			},
+			{
+				x: this.element.elementOffsetPosition.cx,
+				y: this.element.elementOffsetPosition.cy
+			}
+		);
+		let elementStyleKey = "#" + this.element.name + ".position";
+		let layoutStyle = {};
+		layoutStyle[elementStyleKey] = cssPosition;
+		let css = this.generateCSSfromObject(layoutStyle);
+		this.elementCSS.push(css);
+		return css;
+	}
+
+	protected generateCSSfromObject(obj: any) {
 		const selectors = Object.keys(obj);
 		let css = selectors
 			.map(selector => {
@@ -47,11 +83,7 @@ abstract class ElementRenderer {
 		return css;
 	}
 
-	public abstract getHTML(): string;
-	public getCSS(): string {
-		return this.elementCSS.join("");
-	}
-	public addCSSElement(css: string): void {
+	protected addCSSAttribute(css: string): void {
 		this.elementCSS.push(css); //add the new css object
 	}
 }

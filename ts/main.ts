@@ -3,10 +3,13 @@ import * as JSZip from "jszip";
 import fs = require("fs");
 import * as xml2js from "xml2js-es6-promise";
 import GridScaler from "./gridscalerts";
-import LayoutGenerator from "@generators/layoutgenerator";
+import CSSGenerator from "@generators/cssgenerator";
 import HTMLGenerator from "@generators/htmlgenerator";
 import PowerpointElementParser from "./elementparser";
 import WriteOutputFile from "@generators/filewriter";
+import * as ShapeRenderers from "@renderers/shapes";
+import { ElementType } from "@models/pptelement";
+import { PositionType } from "@models/css";
 
 loadZip();
 async function loadZip() {
@@ -24,18 +27,28 @@ async function loadZip() {
 
 	//Parse ppt/presentation.xml and get size
 	let scaler = new GridScaler(slideSizeX, slideSizeY, 12);
-	let layoutGen = new LayoutGenerator(slideShowGlobals, slideShowTheme);
 	let htmlGen = new HTMLGenerator();
 	//Place elements in right position for HTML
 	let slideAttributes = await parseSlideAttributes(zipResult, "ppt/slides/slide2.xml");
 	console.log(JSON.stringify(slideAttributes));
 	let slideElements = slideAttributes["p:sld"]["p:cSld"][0]["p:spTree"][0]["p:sp"];
+
+	let elementsCSS = [];
+
 	for (let element of slideElements) {
 		//parse element body
 		let pptElement = pptElementParser.getProcessedElement(element);
 		if (pptElement) {
 			console.log(pptElement);
-			layoutGen.generateElementLayoutCSS(scaler, pptElement);
+			let elementCSS = new ShapeRenderers[pptElement.shapeType](
+				scaler,
+				pptElement,
+				slideShowGlobals,
+				slideShowTheme,
+				PositionType.Absolute
+			).getCSS();
+			elementsCSS.push(elementCSS);
+			//layoutGen.generateElementLayoutCSS(scaler, pptElement);
 			htmlGen.addElementToDOM(pptElement);
 		}
 	}
@@ -45,8 +58,8 @@ async function loadZip() {
 	//Create Output HTML file
 
 	//console.log(htmlGen.getGeneratedHTML())
-	WriteOutputFile("abs.css", layoutGen.getCSS("abs"));
-	WriteOutputFile("grid.css", layoutGen.getCSS("grid"));
+	WriteOutputFile("abs.css", CSSGenerator.generateCSS(PositionType.Absolute, elementsCSS));
+	WriteOutputFile("grid.css", CSSGenerator.generateCSS(PositionType.Grid, elementsCSS));
 	WriteOutputFile("index.html", htmlGen.getGeneratedHTML());
 }
 /**
