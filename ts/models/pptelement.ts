@@ -28,7 +28,7 @@ export interface PowerpointElement {
 			thickness: number;
 			color: string;
 			type: BorderType;
-			radius: number;
+			radius?: number;
 		};
 		fillColor: string;
 	};
@@ -57,11 +57,9 @@ export enum ElementType {
 }
 
 export enum BorderType {
-	dotted,
-	dashed,
-	solid,
-	groove,
-	ridge
+	dotted = "dotted",
+	dashed = "dashed",
+	solid = "solid"
 }
 
 export enum FontAttributes {

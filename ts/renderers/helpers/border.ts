@@ -5,22 +5,21 @@ import GridScaler from "gridscalerts";
 /**
  * Pass in a Text
  */
-export default function GenerateBorderCSS(scaler: GridScaler, paragraph: PowerpointElement["paragraph"], elementName: string): string {
+export default function GenerateBorderCSS(border: PowerpointElement["shape"]["border"], elementName: string): string {
+	let scaleFactor = 96 / 914400; //default scale converts EMU to pixel
+
 	let css = format(
 		`#{name} .border{
-        font-size:{size}px;
-        font-family: "{font}", Times, serif;  
-        color: #{fill}; 
-		text-align:{alignment};
-		vertical-align:middle;
-		display: table-cell;
+			border-style:{type};
+			border-color:{color};
+			border-width:{width}px;
+
         }`,
 		{
 			name: elementName,
-			size: paragraph.textCharacterProperties.size / 100,
-			font: paragraph.textCharacterProperties.font,
-			fill: paragraph.textCharacterProperties.fillColor,
-			alignment: paragraph.paragraphProperties.alignment
+			type: border.type,
+			color: border.color,
+			width: border.thickness * scaleFactor
 		}
 	);
 	return css;

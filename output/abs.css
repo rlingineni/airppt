@@ -44,8 +44,8 @@
 
 #LetterBox.position {
     position: absolute;
-    top: -47.19643044619423px;
-    left: 131.5069816272966px;
+    top: 59.58624671916011px;
+    left: 223.2833595800525px;
 }
 
 #LetterBox .font {
@@ -57,22 +57,15 @@
     display: table-cell;
 }
 
+#LetterBox.border {
+    border-style: solid;
+    border-color: 000000;
+    border-width: 0.10498687664041995px;
+}
+
 #LetterBox.shape {
-    width: 994.1917060367455px;
-    height: 646.6308661417323px;
-    background: #transparent;
-    display: table;
-}
-
-#Rectangle2.position {
-    position: absolute;
-    top: 56.547926509186354px;
-    left: 278.7945406824147px;
-}
-
-#Rectangle2.shape {
-    width: 687.7807874015748px;
-    height: 515.5068766404199px;
+    width: 852.5952755905512px;
+    height: 516.6758005249344px;
     background: #transparent;
     display: table;
 }

@@ -2,7 +2,7 @@ import { CheckValidObject as checkPath } from "@helpers/checkobj";
 import ColorParser from "./colorparser";
 import { PowerpointElement, ElementType, TextAlignment, FontAttributes, SpecialityType } from "@models/pptelement";
 
-export class ParagraphParser {
+export default class ParagraphParser {
 	public static extractParagraphElements(textElement): PowerpointElement["paragraph"] {
 		if (!textElement["a:r"]) {
 			return null;

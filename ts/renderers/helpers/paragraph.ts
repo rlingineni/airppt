@@ -1,11 +1,10 @@
 import { PowerpointElement } from "@models/pptelement";
 import * as format from "string-template";
-import GridScaler from "gridscalerts";
 
 /**
  * Pass in a Text
  */
-export default function GenerateParagraphCSS(scaler: GridScaler, paragraph: PowerpointElement["paragraph"], elementName: string): string {
+export default function GenerateParagraphCSS(paragraph: PowerpointElement["paragraph"], elementName: string): string {
 	let css = format(
 		`#{name} .font{
         font-size:{size}px;

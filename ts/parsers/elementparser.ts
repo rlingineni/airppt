@@ -2,13 +2,12 @@ import { PowerpointElement, ElementType, TextAlignment, FontAttributes, Speciali
 import { CheckValidObject as checkPath } from "@helpers/checkobj";
 import ColorParser from "./colorparser";
 import ShapeParser from "./shapeparser";
-import { ParagraphParser } from "./paragraphparser";
+import ParagraphParser from "./paragraphparser";
+import LineParser from "./lineparser";
 
 class PowerpointElementParser {
-	private ColorParser;
-	private slideShowTheme;
 	private element;
-	slideShowGlobals: any;
+	private slideShowGlobals;
 
 	constructor(slideShowGlobals, slideShowTheme) {
 		ColorParser.setSlideShowTheme(slideShowTheme);
@@ -44,8 +43,8 @@ class PowerpointElementParser {
 			},
 			paragraph: ParagraphParser.extractParagraphElements(paragraphInfo),
 			shape: {
-				fillColor: ColorParser.getShapeFillColor(this.element) || "FFFFFF"
-				//TO-DO Add Border Element
+				fillColor: ColorParser.getShapeFillColor(this.element) || "FFFFFF",
+				border: LineParser.extractLineElements(this.element)
 			},
 			raw: rawElement
 		};

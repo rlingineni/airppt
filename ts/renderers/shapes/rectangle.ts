@@ -4,6 +4,7 @@ import GridScaler from "gridscalerts";
 import * as format from "string-template";
 import { PositionType } from "@models/css";
 import GenerateParagraphCSS from "../helpers/paragraph";
+import GenerateBorderCSS from "@renderers/helpers/border";
 /**
  * Takes in an element and it's attributes to generate a rectangle and places elements in correct place. The scaler can help you convert heights and widths.
  * Raw GlobalXML values are passed in for reference such as theme.xml and presentation.xml
@@ -29,10 +30,14 @@ export default class Rectangle extends ElementRenderer {
 
 		//stylize text in this element with a generic paragraph helper, may or may not work on all shapes
 		if (element.paragraph) {
-			let fontCSS = GenerateParagraphCSS(scaler, element.paragraph, element.name);
+			let fontCSS = GenerateParagraphCSS(element.paragraph, element.name);
 			this.addCSSAttribute(fontCSS);
 		}
 
+		if (element.shape.border) {
+			let borderCSS = GenerateBorderCSS(element.shape.border, element.name);
+			this.addCSSAttribute(borderCSS);
+		}
 		this.addCSSAttribute(css);
 	}
 

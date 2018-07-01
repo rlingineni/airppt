@@ -1,4 +1,5 @@
 import { CheckValidObject as checkPath } from "@helpers/checkobj";
+
 import { PowerpointElement, ElementType, TextAlignment, FontAttributes, SpecialityType } from "@models/pptelement";
 
 export default class ColorParser {

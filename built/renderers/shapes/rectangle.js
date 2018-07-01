@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const renderer_1 = require("@renderers/renderer");
 const format = require("string-template");
 const paragraph_1 = require("../helpers/paragraph");
+const border_1 = require("@renderers/helpers/border");
 /**
  * Takes in an element and it's attributes to generate a rectangle and places elements in correct place. The scaler can help you convert heights and widths.
  * Raw GlobalXML values are passed in for reference such as theme.xml and presentation.xml
@@ -24,8 +25,12 @@ class Rectangle extends renderer_1.default {
         });
         //stylize text in this element with a generic paragraph helper, may or may not work on all shapes
         if (element.paragraph) {
-            let fontCSS = paragraph_1.default(scaler, element.paragraph, element.name);
+            let fontCSS = paragraph_1.default(element.paragraph, element.name);
             this.addCSSAttribute(fontCSS);
+        }
+        if (element.shape.border) {
+            let borderCSS = border_1.default(element.shape.border, element.name);
+            this.addCSSAttribute(borderCSS);
         }
         this.addCSSAttribute(css);
     }
