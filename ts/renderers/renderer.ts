@@ -1,18 +1,20 @@
 import GridScaler from "gridscalerts";
 import { PowerpointElement } from "@models/pptelement";
 import { PositionType } from "@models/css";
+import * as jsdom from "jsdom";
+import * as jquery from "jquery";
 
 const beautify = require("beautify");
 
 abstract class ElementRenderer {
-	private elementCSS = [];
-	private elementHTML = [];
+	protected elementCSS = [];
+	protected $ = jquery(new jsdom.JSDOM().window);
 
 	constructor(
-		private scaler: GridScaler,
-		private element: PowerpointElement,
-		private rawSlideShowGlobals,
-		private rawSlideShowTheme,
+		protected scaler: GridScaler,
+		protected element: PowerpointElement,
+		protected rawSlideShowGlobals,
+		protected rawSlideShowTheme,
 		positionType: PositionType
 	) {
 		if (positionType == PositionType.Absolute) {
@@ -28,10 +30,6 @@ abstract class ElementRenderer {
 
 	public abstract render(): string;
 
-	protected generateGenericParagraphCSS(elementID): string {
-		//does some default work
-		return "css";
-	}
 	private generateElementAbsolutePosition() {
 		let scaledPositionCoordinates = this.scaler.getScaledCoordinate({
 			x: this.element.elementPosition.x,

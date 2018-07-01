@@ -72,10 +72,10 @@ export enum FontAttributes {
 }
 
 export enum TextAlignment {
-	Center,
-	Left,
-	Right,
-	Justified
+	Center = "center",
+	Left = "left",
+	Right = "right",
+	Justified = "justify"
 }
 
 export enum SpecialityType {

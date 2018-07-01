@@ -8,7 +8,7 @@ import HTMLGenerator from "@generators/htmlgenerator";
 import PowerpointElementParser from "./elementparser";
 import WriteOutputFile from "@generators/filewriter";
 import * as ShapeRenderers from "@renderers/shapes";
-import { ElementType } from "@models/pptelement";
+import { ElementType, SpecialityType } from "@models/pptelement";
 import { PositionType } from "@models/css";
 
 loadZip();
@@ -19,11 +19,10 @@ async function loadZip() {
 
 	let slideShowGlobals = await parseSlideAttributes(zipResult, "ppt/presentation.xml");
 	let slideShowTheme = await parseSlideAttributes(zipResult, "ppt/theme/theme1.xml");
-	//console.log(JSON.stringify(slideShowTheme));
+
 	let slideSizeX = slideShowGlobals["p:presentation"]["p:sldSz"][0]["$"]["cx"];
 	let slideSizeY = slideShowGlobals["p:presentation"]["p:sldSz"][0]["$"]["cy"];
 	let pptElementParser = new PowerpointElementParser(slideShowGlobals, slideShowTheme);
-	//TO-DO:
 
 	//Parse ppt/presentation.xml and get size
 	let scaler = new GridScaler(slideSizeX, slideSizeY, 12);
@@ -40,65 +39,23 @@ async function loadZip() {
 		let pptElement = pptElementParser.getProcessedElement(element);
 		if (pptElement) {
 			console.log(pptElement);
-			let elementCSS = new ShapeRenderers[pptElement.shapeType](
-				scaler,
-				pptElement,
-				slideShowGlobals,
-				slideShowTheme,
-				PositionType.Absolute
-			).getCSS();
+			let rendererType = pptElement.speciality == SpecialityType.None ? pptElement.shapeType : pptElement.speciality;
+			console.log(rendererType);
+			//Convert PPT shapes
+			let renderedElement = new ShapeRenderers[rendererType](scaler, pptElement, slideShowGlobals, slideShowTheme, PositionType.Absolute);
+			let elementCSS = renderedElement.getCSS();
+			let html = renderedElement.render();
+
+			//add HTML and CSS to files
 			elementsCSS.push(elementCSS);
-			//layoutGen.generateElementLayoutCSS(scaler, pptElement);
-			htmlGen.addElementToDOM(pptElement);
+			htmlGen.addElementToDOM(html);
 		}
 	}
 
-	//Convert PPT shapes
-
 	//Create Output HTML file
-
-	//console.log(htmlGen.getGeneratedHTML())
 	WriteOutputFile("abs.css", CSSGenerator.generateCSS(PositionType.Absolute, elementsCSS));
 	WriteOutputFile("grid.css", CSSGenerator.generateCSS(PositionType.Grid, elementsCSS));
 	WriteOutputFile("index.html", htmlGen.getGeneratedHTML());
-}
-/**
- * Returns a PPT Element Object
- */
-function extractElementAttributes() {
-	//standardized object model
-	return {
-		/*  name: "NextLetterButton", //or the name combined
-          type: "rect", //any preset types or others such as "images","textboxes","media"
-          elementPostion: { //location to place the element
-              x: 100000,
-              y: 100000
-          },
-          elementOffsetPosition: {
-              cx: 1000000,
-              cy: 1000000,
-          },
-          value: "",
-          visualStyle: {
-              border: {
-                  thickness: 12,
-                  color: red,
-                  type: dashed,
-                  radius: 25,
-              },
-              fill: {
-                  color: blue,
-              }
-          },
-          fontStyle: {
-              font: 'Calibri',
-              fontSize: '12',
-              fontColor: '#FFF'
-          },
-          links: {
-              //wherever or whichever element this might link do
-          }*/
-	};
 }
 
 async function parseSlideAttributes(zipResult, fileName) {

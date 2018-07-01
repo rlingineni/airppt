@@ -31,6 +31,14 @@ export default class Triangle extends ElementRenderer {
 	}
 
 	render(): string {
-		return "triangle";
+		let shapeDiv = format('<div id="{0}" class="{1}"> </div>', this.element.name, "position shape");
+		this.$("body").append(shapeDiv); //add the shapediv initially
+
+		if (this.element.paragraph) {
+			let paragraphHTML = format('<p class="font">{0}</p>', this.element.paragraph.text);
+			this.$("#" + this.element.name).append(paragraphHTML); //add the paragraph div within t
+		}
+
+		return this.$("#" + this.element.name)[0].outerHTML;
 	}
 }

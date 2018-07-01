@@ -14,8 +14,7 @@ class PowerpointElementParser {
 	public getProcessedElement(rawElement): PowerpointElement {
 		this.element = rawElement;
 		let elementName: string =
-			this.element["p:nvSpPr"][0]["p:cNvPr"][0]["$"]["title"] ||
-			this.element["p:nvSpPr"][0]["p:cNvPr"][0]["$"]["name"].replace(/\s/g, "");
+			this.element["p:nvSpPr"][0]["p:cNvPr"][0]["$"]["title"] || this.element["p:nvSpPr"][0]["p:cNvPr"][0]["$"]["name"].replace(/\s/g, "");
 
 		//elements must have a position, or else skip them TO-DO: Allow Placeholder positions
 		if (!this.element["p:spPr"][0]["a:xfrm"]) {
@@ -148,7 +147,7 @@ class PowerpointElementParser {
 
 		//spPR[NOFILL] return null
 		if (shapeProperties["a:noFill"]) {
-			return null;
+			return "transparent";
 		}
 
 		//look at p:style for shape default theme values
