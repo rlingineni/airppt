@@ -3,15 +3,15 @@ import { CheckValidObject as checkPath } from "@helpers/checkobj";
 import ColorParser from "./colorparser";
 import ShapeParser from "./shapeparser";
 import ParagraphParser from "./paragraphparser";
+import SlideRelationsParser from "./relparser";
 import LineParser from "./lineparser";
 
 class PowerpointElementParser {
 	private element;
-	private slideShowGlobals;
 
-	constructor(slideShowGlobals, slideShowTheme) {
+	constructor(private slideShowGlobals, slideShowTheme, private slideRelations) {
 		ColorParser.setSlideShowTheme(slideShowTheme);
-		this.slideShowGlobals = slideShowGlobals;
+		SlideRelationsParser.setSlideRelations(slideRelations);
 	}
 
 	public getProcessedElement(rawElement): PowerpointElement {
