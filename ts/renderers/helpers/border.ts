@@ -9,7 +9,7 @@ export default function GenerateBorderCSS(border: PowerpointElement["shape"]["bo
 	let scaleFactor = 96 / 914400; //default scale converts EMU to pixel
 
 	let css = format(
-		`#{name} .border{
+		`#{name}.border{
 			border-style:{type};
 			border-color:{color};
 			border-width:{width}px;

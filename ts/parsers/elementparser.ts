@@ -1,4 +1,4 @@
-import { PowerpointElement, ElementType, TextAlignment, FontAttributes, SpecialityType } from "@models/pptelement";
+import { PowerpointElement, ElementType, TextAlignment, FontAttributes, SpecialityType, LinkType } from "@models/pptelement";
 import { CheckValidObject as checkPath } from "@helpers/checkobj";
 import ColorParser from "./colorparser";
 import ShapeParser from "./shapeparser";
@@ -32,7 +32,7 @@ class PowerpointElementParser {
 		let pptElement: PowerpointElement = {
 			name: elementName,
 			shapeType: ShapeParser.determineShapeType(elementPresetType),
-			speciality: ShapeParser.determineSpecialityType(this.element),
+			specialityType: ShapeParser.determineSpecialityType(this.element),
 			elementPosition: {
 				x: elementPosition.x,
 				y: elementPosition.y
@@ -46,6 +46,7 @@ class PowerpointElementParser {
 				fillColor: ColorParser.getShapeFillColor(this.element) || "FFFFFF",
 				border: LineParser.extractLineElements(this.element)
 			},
+			links: SlideRelationsParser.resolveShapeHyperlinks(this.element),
 			raw: rawElement
 		};
 

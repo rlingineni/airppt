@@ -1,4 +1,4 @@
-import { PowerpointElement } from "@models/pptelement";
+import { PowerpointElement, LinkType } from "@models/pptelement";
 import ElementRenderer from "@renderers/renderer";
 import GridScaler from "gridscalerts";
 import * as format from "string-template";
@@ -44,8 +44,20 @@ export default class Rectangle extends ElementRenderer {
 	render(): string {
 		//NOTE: I'm using JQUERY to build my dom, but you can return html however you want
 
-		let shapeDiv = format('<div id="{0}" class="{1}"><div class="empty"> </div> </div>', this.element.name, "position shape border");
+		let shapeDiv = format(
+			`<div id="{0}" class="{1}">
+				<a style="height:100%;display:block;"> </a>
+			</div>`,
+			this.element.name,
+			"position shape border"
+		);
 		this.$("body").append(shapeDiv); //add the shapediv initially
+
+		if (this.element.links) {
+			if (this.element.links.Type == LinkType.External) {
+				this.$("#" + this.element.name + " > a").attr("href", this.element.links.Uri);
+			}
+		}
 
 		if (this.element.paragraph) {
 			let paragraphHTML = format('<p class="font">{0}</p>', this.element.paragraph.text);

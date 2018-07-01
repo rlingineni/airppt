@@ -31,8 +31,8 @@ function loadZip() {
         let slideSizeX = slideShowGlobals["p:presentation"]["p:sldSz"][0]["$"]["cx"];
         let slideSizeY = slideShowGlobals["p:presentation"]["p:sldSz"][0]["$"]["cy"];
         //Place elements in right position for HTML
-        let slideAttributes = yield parseSlideAttributes(zipResult, "ppt/slides/slide2.xml");
-        let slideRelations = yield parseSlideAttributes(zipResult, "ppt/slides/_rels/slide2.xml.refs"); //contains references to links,images and etc.
+        let slideAttributes = yield parseSlideAttributes(zipResult, "ppt/slides/slide1.xml");
+        let slideRelations = yield parseSlideAttributes(zipResult, "ppt/slides/_rels/slide2.xml.rels"); //contains references to links,images and etc.
         console.log(JSON.stringify(slideRelations));
         //Parse ppt/presentation.xml and get size
         let scaler = new gridscalerts_1.default(slideSizeX, slideSizeY, 12);
@@ -45,7 +45,7 @@ function loadZip() {
             let pptElement = pptElementParser.getProcessedElement(element);
             if (pptElement) {
                 console.log(pptElement);
-                let rendererType = pptElement.speciality == pptelement_1.SpecialityType.None ? pptElement.shapeType : pptElement.speciality;
+                let rendererType = pptElement.specialityType == pptelement_1.SpecialityType.None ? pptElement.shapeType : pptElement.specialityType; //override with speciality choice
                 console.log(rendererType);
                 //Convert PPT shapes
                 let renderedElement = new ShapeRenderers[rendererType](scaler, pptElement, slideShowGlobals, slideShowTheme, css_1.PositionType.Absolute);

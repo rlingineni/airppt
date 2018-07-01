@@ -6,79 +6,154 @@
     border-style: dotted;
 }
 
-#NextLetterButton.position {
+#RectangleShape.position {
     position: absolute;
-    top: 597.6567979002625px;
-    left: 1106.5727034120735px;
+    top: 177.50005249343832px;
+    left: 88px;
 }
 
-#NextLetterButton.shape {
+#RectangleShape.shape {
+    width: 104.73490813648294px;
+    height: 76.76734908136483px;
+    background: #4472C4;
+    display: table;
+}
+
+#CircleShape.position {
+    position: absolute;
+    top: 168.80346456692914px;
+    left: 246.62068241469817px;
+}
+
+#CircleShape.shape {
+    width: 94.16062992125984px;
+    height: 94.16062992125984px;
+    background: #4472C4;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    display: table;
+}
+
+#RoundedRectangle.position {
+    position: absolute;
+    top: 170.20451443569556px;
+    left: 394.66708661417323px;
+}
+
+#RoundedRectangle.shape {
+    width: 139.77049868766406px;
+    height: 91.35832020997375px;
+    background: #4472C4;
+    display: table;
+}
+
+#Triangle.position {
+    position: absolute;
+    top: 170.20451443569556px;
+    left: 588.6896587926509px;
+}
+
+#Triangle.shape {
     width: 0;
     height: 0;
-    border-top: 42.66666666666667px solid transparent;
-    border-left: 88.88892388451444px solid #4472C4;
-    border-bottom: 42.66666666666667px solid transparent;
+    border-top: 44.23307086614173px solid transparent;
+    border-left: 102.62068241469817px solid #4472C4;
+    border-bottom: 44.23307086614173px solid transparent;
 }
 
-#RestartButton.position {
+#RightTriangle.position {
     position: absolute;
-    top: 599.4344356955381px;
-    left: 926.5453018372704px;
+    top: 170.20451443569556px;
+    left: 753.1034120734909px;
 }
 
-#RestartButton .font {
-    font-size: 28px;
-    font-family: "Times", Times, serif;
+#RightTriangle.shape {
+    width: 88.46614173228346px;
+    height: 88.46614173228346px;
+    background: #4472C4;
+    display: table;
+}
+
+#Octagon.position {
+    position: absolute;
+    top: 155.5862467191601px;
+    left: 905.3793175853019px;
+}
+
+#Octagon.shape {
+    width: 107.37784776902888px;
+    height: 107.37784776902888px;
+    background: #4472C4;
+    display: table;
+}
+
+#CustomFrame.position {
+    position: absolute;
+    top: 151.5409973753281px;
+    left: 1086.718215223097px;
+}
+
+#CustomFrame.shape {
+    width: 125.79307086614173px;
+    height: 125.79307086614173px;
+    background: #4472C4;
+    display: table;
+}
+
+#Rectangle13.position {
+    position: absolute;
+    top: 316.6667716535433px;
+    left: 88px;
+}
+
+#Rectangle13.shape {
+    width: 104.73490813648294px;
+    height: 76.76734908136483px;
+    background: #F44D6A;
+    display: table;
+}
+
+#CircleOutlineShape.position {
+    position: absolute;
+    top: 307.96997375328084px;
+    left: 249.3649343832021px;
+}
+
+#CircleOutlineShape.border {
+    border-style: solid;
+    border-color: F44D6A;
+    border-width: 4px;
+}
+
+#CircleOutlineShape.shape {
+    width: 94.16062992125984px;
+    height: 228.30582677165356px;
+    background: #4472C4;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    display: table;
+}
+
+#RoundedTransparentRectangle.position {
+    position: absolute;
+    top: 307.9700787401575px;
+    left: 394.20703412073493px;
+}
+
+#RoundedTransparentRectangle .font {
+    font-size: 16px;
+    font-family: "Helvetica", Times, serif;
     color: #000000;
     text-align: center;
     vertical-align: middle;
     display: table-cell;
 }
 
-#RestartButton.shape {
-    width: 149.33333333333334px;
-    height: 85.33343832020998px;
-    background: #F44D6A;
-    display: table;
-}
-
-#LetterBox.position {
-    position: absolute;
-    top: -47.19643044619423px;
-    left: 131.5069816272966px;
-}
-
-#LetterBox .font {
-    font-size: 413px;
-    font-family: "lucida grande", Times, serif;
-    color: #222222;
-    text-align: center;
-    vertical-align: middle;
-    display: table-cell;
-}
-
-#LetterBox.shape {
-    width: 994.1917060367455px;
-    height: 646.6308661417323px;
-    background: #transparent;
-    display: table;
-}
-
-#Rectangle2.position {
-    position: absolute;
-    top: 56.547926509186354px;
-    left: 278.7945406824147px;
-}
-
-#Rectangle2.border {
-    border-style: solid;
-    border-color: 000000;
-    border-width: 6px;
-}
-
-#Rectangle2.shape {
-    width: 687.7807874015748px;
-    height: 515.5068766404199px;
-    background: #transparent;
+#RoundedTransparentRectangle.shape {
+    width: 139.77049868766406px;
+    height: 91.35832020997375px;
+    background: #4472C4;
     display: table;
 }

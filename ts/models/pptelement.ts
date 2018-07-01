@@ -1,7 +1,7 @@
 export interface PowerpointElement {
 	name: string; //or the name combined
 	shapeType: ElementType; //
-	speciality: SpecialityType; //Do something special such as "images","textboxes","media"
+	specialityType: SpecialityType; //Do something special such as "images","textboxes","media"
 	elementPosition: {
 		//location to place the element
 		x: number;
@@ -38,9 +38,11 @@ export interface PowerpointElement {
 		fontColor: string;
 	};
 	links?: {
+		Type: LinkType;
+		Uri: string;
 		//wherever or whichever element this might link do
 	};
-	raw: any; //the entire element object
+	raw: any; //the entire unparsed element object
 }
 
 export enum ElementType {
@@ -80,4 +82,9 @@ export enum SpecialityType {
 	Textbox = "Textbox",
 	Image = "Image",
 	None = "None"
+}
+
+export enum LinkType {
+	Asset = "Asset",
+	External = "External"
 }
