@@ -23,6 +23,15 @@ class CSSGenerator {
 			this.absoluteCSS = this.absoluteCSS.concat(cssElements);
 			css = beautify(this.absoluteCSS.join(""), { format: "css" });
 		} else {
+			this.gridCSS.push(`
+			.wrapper {
+				display: grid;
+				grid-template-columns: repeat(12, 1fr);
+				grid-gap: 10px;
+				grid-auto-rows: minmax(80px, auto);
+				width: 100vw;
+			  }`);
+			this.gridCSS = this.gridCSS.concat(cssElements);
 			css = beautify(this.gridCSS.join(""), { format: "css" });
 		}
 		return css;

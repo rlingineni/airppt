@@ -22,16 +22,18 @@ async function loadZip() {
 
 	let slideSizeX = slideShowGlobals["p:presentation"]["p:sldSz"][0]["$"]["cx"];
 	let slideSizeY = slideShowGlobals["p:presentation"]["p:sldSz"][0]["$"]["cy"];
-	let pptElementParser = new PowerpointElementParser(slideShowGlobals, slideShowTheme);
+
+	//Place elements in right position for HTML
+	let slideAttributes = await parseSlideAttributes(zipResult, "ppt/slides/slide2.xml");
+	let slideRelations = await parseSlideAttributes(zipResult, "ppt/slides/_rels/slide2.xml.refs"); //contains references to links,images and etc.
+	console.log(JSON.stringify(slideRelations));
 
 	//Parse ppt/presentation.xml and get size
 	let scaler = new GridScaler(slideSizeX, slideSizeY, 12);
-	let htmlGen = new HTMLGenerator();
-	//Place elements in right position for HTML
-	let slideAttributes = await parseSlideAttributes(zipResult, "ppt/slides/slide2.xml");
-	console.log(JSON.stringify(slideAttributes));
-	let slideElements = slideAttributes["p:sld"]["p:cSld"][0]["p:spTree"][0]["p:sp"];
+	let htmlGen = new HTMLGenerator(PositionType.Absolute);
+	let pptElementParser = new PowerpointElementParser(slideShowGlobals, slideShowTheme, slideRelations);
 
+	let slideElements = slideAttributes["p:sld"]["p:cSld"][0]["p:spTree"][0]["p:sp"];
 	let elementsCSS = [];
 
 	for (let element of slideElements) {

@@ -8,16 +8,16 @@ export default class ShapeParser {
 				return ElementType.Rectangle;
 			case "ellipse":
 				return ElementType.Ellipse;
-			case "roundRect":
-				return ElementType.RoundedRectangle;
 			case "triangle":
 				return ElementType.Triangle;
+			case "roundRect":
+			//return ElementType.RoundedRectangle;
 			case "rtTriangle":
-				return ElementType.RightTriangle;
+			//return ElementType.RightTriangle;
 			case "octagon":
-				return ElementType.Octagon;
+			//return ElementType.Octagon;
 			case "frame":
-				return ElementType.Frame;
+			//return ElementType.Frame;
 			default:
 				return ElementType.Rectangle;
 		}

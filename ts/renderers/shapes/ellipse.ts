@@ -9,15 +9,18 @@ import GenerateBorderCSS from "@renderers/helpers/border";
  * Takes in an element and it's attributes to generate a rectangle and places elements in correct place. The scaler can help you convert heights and widths.
  * Raw GlobalXML values are passed in for reference such as theme.xml and presentation.xml
  */
-export default class Rectangle extends ElementRenderer {
+export default class Ellipse extends ElementRenderer {
 	//NOTE: We don't have to worry about width and height, our positioner takes care of that for us
 	constructor(scaler: GridScaler, element: PowerpointElement, rawSlideShowGlobals, rawSlideShowTheme, PositionType: PositionType) {
 		super(scaler, element, rawSlideShowGlobals, rawSlideShowTheme, PositionType);
 		let css = format(
 			`#{name}.shape{
-			width:{width}px;
-			height:{height}px;  
-			background: #{background}; 
+            width:{width}px;
+            height:{height}px;    
+            background: #{background}; 
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
 			display: table;
             }`,
 			{
@@ -44,7 +47,7 @@ export default class Rectangle extends ElementRenderer {
 	render(): string {
 		//NOTE: I'm using JQUERY to build my dom, but you can return html however you want
 
-		let shapeDiv = format('<div id="{0}" class="{1}"><div class="empty"> </div> </div>', this.element.name, "position shape border");
+		let shapeDiv = format('<div id="{0}" class="{1}"><p></p> </div>', this.element.name, "position shape border");
 		this.$("body").append(shapeDiv); //add the shapediv initially
 
 		if (this.element.paragraph) {

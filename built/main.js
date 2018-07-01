@@ -30,13 +30,14 @@ function loadZip() {
         let slideShowTheme = yield parseSlideAttributes(zipResult, "ppt/theme/theme1.xml");
         let slideSizeX = slideShowGlobals["p:presentation"]["p:sldSz"][0]["$"]["cx"];
         let slideSizeY = slideShowGlobals["p:presentation"]["p:sldSz"][0]["$"]["cy"];
-        let pptElementParser = new elementparser_1.default(slideShowGlobals, slideShowTheme);
-        //Parse ppt/presentation.xml and get size
-        let scaler = new gridscalerts_1.default(slideSizeX, slideSizeY, 12);
-        let htmlGen = new htmlgenerator_1.default();
         //Place elements in right position for HTML
         let slideAttributes = yield parseSlideAttributes(zipResult, "ppt/slides/slide2.xml");
-        console.log(JSON.stringify(slideAttributes));
+        let slideRelations = yield parseSlideAttributes(zipResult, "ppt/slides/_rels/slide2.xml.refs"); //contains references to links,images and etc.
+        console.log(JSON.stringify(slideRelations));
+        //Parse ppt/presentation.xml and get size
+        let scaler = new gridscalerts_1.default(slideSizeX, slideSizeY, 12);
+        let htmlGen = new htmlgenerator_1.default(css_1.PositionType.Absolute);
+        let pptElementParser = new elementparser_1.default(slideShowGlobals, slideShowTheme, slideRelations);
         let slideElements = slideAttributes["p:sld"]["p:cSld"][0]["p:spTree"][0]["p:sp"];
         let elementsCSS = [];
         for (let element of slideElements) {

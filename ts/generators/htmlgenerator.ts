@@ -5,24 +5,37 @@
 import * as jsdom from "jsdom";
 import * as beautify from "beautify";
 import * as jquery from "jquery";
+import * as format from "string-template";
+import { PositionType } from "@models/css";
 
 class HTMLGenerator {
 	private JSDOM;
 	private window;
 	private $;
 
-	constructor() {
+	constructor(positionType: PositionType) {
+		let pos: string;
+		if (positionType == PositionType.Absolute) {
+			pos = "abs.css";
+		} else {
+			pos = "grid.css";
+		}
 		this.JSDOM = jsdom.JSDOM;
-		this.window = new this.JSDOM(`
-        <html>
-        <head>
-            <link rel="stylesheet" type="text/css" href="abs.css">
-        </head>
-            <body> 
-            <div id="layout" class="wrapper">
-            </div>
-            </body>
-        </html>`).window;
+		this.window = new this.JSDOM(
+			format(
+				`
+					<html>
+					<head>
+						<link rel="stylesheet" type="text/css" href="{0}">
+					</head>
+						<body> 
+						<div id="layout" class="wrapper">
+						</div>
+						</body>
+					</html>`,
+				pos
+			)
+		).window;
 		this.$ = jquery(this.window);
 	}
 

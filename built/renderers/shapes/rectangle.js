@@ -13,8 +13,8 @@ class Rectangle extends renderer_1.default {
     constructor(scaler, element, rawSlideShowGlobals, rawSlideShowTheme, PositionType) {
         super(scaler, element, rawSlideShowGlobals, rawSlideShowTheme, PositionType);
         let css = format(`#{name}.shape{
-            width:{width}px;
-            height:{height}px;    
+			width:{width}px;
+			height:{height}px;  
 			background: #{background}; 
 			display: table;
             }`, {
@@ -36,7 +36,7 @@ class Rectangle extends renderer_1.default {
     }
     render() {
         //NOTE: I'm using JQUERY to build my dom, but you can return html however you want
-        let shapeDiv = format('<div id="{0}" class="{1}"> </div>', this.element.name, "position shape border");
+        let shapeDiv = format('<div id="{0}" class="{1}"><div class="empty"> </div> </div>', this.element.name, "position shape border");
         this.$("body").append(shapeDiv); //add the shapediv initially
         if (this.element.paragraph) {
             let paragraphHTML = format('<p class="font">{0}</p>', this.element.paragraph.text);
