@@ -3,7 +3,7 @@ import ElementRenderer from "@renderers/renderer";
 import GridScaler from "gridscalerts";
 import * as format from "string-template";
 import { PositionType } from "@models/css";
-import GenerateParagraphCSS from "@helpers/paragraph";
+import GenerateParagraphCSS from "../helpers/paragraph";
 /**
  * Takes in an element and it's attributes to generate a rectangle and places elements in correct place. The scaler can help you convert heights and widths.
  * Raw GlobalXML values are passed in for reference such as theme.xml and presentation.xml
@@ -39,7 +39,7 @@ export default class Rectangle extends ElementRenderer {
 	render(): string {
 		//NOTE: I'm using JQUERY to build my dom, but you can return html however you want
 
-		let shapeDiv = format('<div id="{0}" class="{1}"> </div>', this.element.name, "position shape");
+		let shapeDiv = format('<div id="{0}" class="{1}"> </div>', this.element.name, "position shape border");
 		this.$("body").append(shapeDiv); //add the shapediv initially
 
 		if (this.element.paragraph) {

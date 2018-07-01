@@ -5,7 +5,7 @@ import * as xml2js from "xml2js-es6-promise";
 import GridScaler from "./gridscalerts";
 import CSSGenerator from "@generators/cssgenerator";
 import HTMLGenerator from "@generators/htmlgenerator";
-import PowerpointElementParser from "./elementparser";
+import PowerpointElementParser from "./parsers/elementparser";
 import WriteOutputFile from "@generators/filewriter";
 import * as ShapeRenderers from "@renderers/shapes";
 import { ElementType, SpecialityType } from "@models/pptelement";

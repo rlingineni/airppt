@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const renderer_1 = require("@renderers/renderer");
 const format = require("string-template");
-const paragraph_1 = require("@helpers/paragraph");
+const paragraph_1 = require("../helpers/paragraph");
 /**
  * Takes in an element and it's attributes to generate a rectangle and places elements in correct place. The scaler can help you convert heights and widths.
  * Raw GlobalXML values are passed in for reference such as theme.xml and presentation.xml
@@ -31,7 +31,7 @@ class Rectangle extends renderer_1.default {
     }
     render() {
         //NOTE: I'm using JQUERY to build my dom, but you can return html however you want
-        let shapeDiv = format('<div id="{0}" class="{1}"> </div>', this.element.name, "position shape");
+        let shapeDiv = format('<div id="{0}" class="{1}"> </div>', this.element.name, "position shape border");
         this.$("body").append(shapeDiv); //add the shapediv initially
         if (this.element.paragraph) {
             let paragraphHTML = format('<p class="font">{0}</p>', this.element.paragraph.text);
