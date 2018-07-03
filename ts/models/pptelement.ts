@@ -31,6 +31,7 @@ export interface PowerpointElement {
 			radius?: number;
 		};
 		fillColor: string;
+		opacity: number;
 	};
 	fontStyle?: {
 		font: string;

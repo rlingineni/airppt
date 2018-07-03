@@ -17,14 +17,14 @@ export default class Rectangle extends ElementRenderer {
 			`#{name}.shape{
 			width:{width}px;
 			height:{height}px;  
-			background: #{background}; 
+			background: {background}; 
 			display: table;
             }`,
 			{
 				name: element.name,
 				width: scaler.getScaledValue(element.elementOffsetPosition.cx),
 				height: scaler.getScaledValue(element.elementOffsetPosition.cy),
-				background: element.shape.fillColor
+				background: element.shape.opacity == 0 ? "transparent" : "#" + element.shape.fillColor
 			}
 		);
 

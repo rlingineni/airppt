@@ -4,7 +4,7 @@ import { PowerpointElement, ElementType, TextAlignment, FontAttributes, Speciali
 
 export default class ParagraphParser {
 	public static extractParagraphElements(textElement): PowerpointElement["paragraph"] {
-		if (!textElement["a:r"]) {
+		if (!textElement || !textElement["a:r"]) {
 			return null;
 		}
 
@@ -23,10 +23,10 @@ export default class ParagraphParser {
 		}
 
 		let textPropertiesElement: PowerpointElement["paragraph"]["textCharacterProperties"] = {
-			size: checkPath(textProperties, '["$"].sz') || 12,
+			size: checkPath(textProperties, '["$"].sz') || 1200,
 			fontAttributes: this.determineFontAttributes(textProperties["$"]),
 			font: checkPath(textProperties, '["a:latin"][0]["$"]["typeface"]') || "Helvetica",
-			fillColor: ColorParser.getTextColors(textProperties) || "#000000"
+			fillColor: ColorParser.getTextColors(textProperties) || "000000"
 		};
 
 		return textPropertiesElement;

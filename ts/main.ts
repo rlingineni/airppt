@@ -1,39 +1,37 @@
 require("module-alias/register");
-import * as JSZip from "jszip";
-import fs = require("fs");
-import * as xml2js from "xml2js-es6-promise";
 import GridScaler from "./gridscalerts";
+import ZipHandler from "@helpers/ziphandler";
 import CSSGenerator from "@generators/cssgenerator";
 import HTMLGenerator from "@generators/htmlgenerator";
 import PowerpointElementParser from "./parsers/elementparser";
-import WriteOutputFile from "@generators/filewriter";
-import * as ShapeRenderers from "@renderers/shapes";
-import { ElementType, SpecialityType } from "@models/pptelement";
+import { WriteOutputFile } from "@generators/filewriter";
+import * as ShapeRenderers from "@renderers/index";
+import { SpecialityType } from "@models/pptelement";
 import { PositionType } from "@models/css";
 
 loadZip();
 async function loadZip() {
-	var zip = new JSZip();
-	let data = await getData("../TeluguApp.pptx");
-	let zipResult = await zip.loadAsync(data);
-
-	let slideShowGlobals = await parseSlideAttributes(zipResult, "ppt/presentation.xml");
-	let slideShowTheme = await parseSlideAttributes(zipResult, "ppt/theme/theme1.xml");
+	await ZipHandler.loadZip("../TeluguApp.pptx");
+	let slideShowGlobals = await ZipHandler.parseSlideAttributes("ppt/presentation.xml");
+	let slideShowTheme = await ZipHandler.parseSlideAttributes("ppt/theme/theme1.xml");
 
 	let slideSizeX = slideShowGlobals["p:presentation"]["p:sldSz"][0]["$"]["cx"];
 	let slideSizeY = slideShowGlobals["p:presentation"]["p:sldSz"][0]["$"]["cy"];
 
 	//Place elements in right position for HTML
-	let slideAttributes = await parseSlideAttributes(zipResult, "ppt/slides/slide1.xml");
-	let slideRelations = await parseSlideAttributes(zipResult, "ppt/slides/_rels/slide2.xml.rels"); //contains references to links,images and etc.
-	console.log(JSON.stringify(slideRelations));
+	let slideAttributes = await ZipHandler.parseSlideAttributes("ppt/slides/slide5.xml");
+	let slideRelations = await ZipHandler.parseSlideAttributes("ppt/slides/_rels/slide5.xml.rels"); //contains references to links,images and etc.
+	console.log(JSON.stringify(slideAttributes));
 
 	//Parse ppt/presentation.xml and get size
 	let scaler = new GridScaler(slideSizeX, slideSizeY, 12);
 	let htmlGen = new HTMLGenerator(PositionType.Absolute);
 	let pptElementParser = new PowerpointElementParser(slideShowGlobals, slideShowTheme, slideRelations);
 
-	let slideElements = slideAttributes["p:sld"]["p:cSld"][0]["p:spTree"][0]["p:sp"];
+	let slideShapes = slideAttributes["p:sld"]["p:cSld"][0]["p:spTree"][0]["p:sp"];
+	let slideImages = slideAttributes["p:sld"]["p:cSld"][0]["p:spTree"][0]["p:pic"];
+
+	let slideElements = slideShapes.concat(slideImages);
 	let elementsCSS = [];
 
 	for (let element of slideElements) {
@@ -58,18 +56,4 @@ async function loadZip() {
 	WriteOutputFile("abs.css", CSSGenerator.generateCSS(PositionType.Absolute, elementsCSS));
 	WriteOutputFile("grid.css", CSSGenerator.generateCSS(PositionType.Grid, elementsCSS));
 	WriteOutputFile("index.html", htmlGen.getGeneratedHTML());
-}
-
-async function parseSlideAttributes(zipResult, fileName) {
-	let presentationSlide = await zipResult.file(fileName).async("string");
-	let parsedPresentationSlide = await xml2js(presentationSlide, { trim: true });
-	return parsedPresentationSlide;
-}
-
-function getData(fileName): Promise<Buffer> {
-	return new Promise(function(resolve, reject) {
-		fs.readFile(fileName, (err, data) => {
-			err ? reject(err) : resolve(data);
-		});
-	});
 }

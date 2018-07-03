@@ -6,144 +6,40 @@
     width: 100vw;
 }
 
-#RectangleShape.position {
+#BackgroundImage.position {
     position: absolute;
-    top: 177.50005249343832px;
-    left: 88px;
+    top: -163.42488188976378px;
+    left: 0px;
 }
 
-#RectangleShape.shape {
-    width: 104.73490813648294px;
-    height: 76.76734908136483px;
+#BackgroundImage.shape {
+    width: 1280px;
+    height: 732.4932283464567px;
     background: #4472C4;
     display: table;
 }
 
-#CircleShape.position {
+#Rectangle4.position {
     position: absolute;
-    top: 168.80346456692914px;
-    left: 246.62068241469817px;
+    top: 469.47947506561684px;
+    left: 0px;
 }
 
-#CircleShape.shape {
-    width: 94.16062992125984px;
-    height: 94.16062992125984px;
-    background: #4472C4;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    display: table;
-}
-
-#RoundedRectangle.position {
-    position: absolute;
-    top: 170.20451443569556px;
-    left: 394.66708661417323px;
-}
-
-#RoundedRectangle.shape {
-    width: 139.77049868766406px;
-    height: 91.35832020997375px;
-    background: #4472C4;
-    display: table;
-}
-
-#Triangle.position {
-    position: absolute;
-    top: 170.20451443569556px;
-    left: 588.6896587926509px;
-}
-
-#Triangle.shape {
-    width: 0;
-    height: 0;
-    border-top: 44.23307086614173px solid transparent;
-    border-left: 102.62068241469817px solid #4472C4;
-    border-bottom: 44.23307086614173px solid transparent;
-}
-
-#RightTriangle.position {
-    position: absolute;
-    top: 170.20451443569556px;
-    left: 753.1034120734909px;
-}
-
-#RightTriangle.shape {
-    width: 88.46614173228346px;
-    height: 88.46614173228346px;
-    background: #4472C4;
-    display: table;
-}
-
-#Octagon.position {
-    position: absolute;
-    top: 155.5862467191601px;
-    left: 905.3793175853019px;
-}
-
-#Octagon.shape {
-    width: 107.37784776902888px;
-    height: 107.37784776902888px;
-    background: #4472C4;
-    display: table;
-}
-
-#CustomFrame.position {
-    position: absolute;
-    top: 151.5409973753281px;
-    left: 1086.718215223097px;
-}
-
-#CustomFrame.shape {
-    width: 125.79307086614173px;
-    height: 125.79307086614173px;
-    background: #4472C4;
+#Rectangle4.shape {
+    width: 1280px;
+    height: 184.10950131233596px;
+    background: #F2F2F2;
     display: table;
 }
 
 #Rectangle13.position {
     position: absolute;
-    top: 316.6667716535433px;
-    left: 88px;
+    top: 609.189501312336px;
+    left: 77.47926509186352px;
 }
 
-#Rectangle13.shape {
-    width: 104.73490813648294px;
-    height: 76.76734908136483px;
-    background: #F44D6A;
-    display: table;
-}
-
-#CircleOutlineShape.position {
-    position: absolute;
-    top: 307.96997375328084px;
-    left: 249.3649343832021px;
-}
-
-#CircleOutlineShape.border {
-    border-style: solid;
-    border-color: F44D6A;
-    border-width: 4px;
-}
-
-#CircleOutlineShape.shape {
-    width: 94.16062992125984px;
-    height: 228.30582677165356px;
-    background: #4472C4;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    display: table;
-}
-
-#RoundedTransparentRectangle.position {
-    position: absolute;
-    top: 307.9700787401575px;
-    left: 394.20703412073493px;
-}
-
-#RoundedTransparentRectangle .font {
-    font-size: 16px;
+#Rectangle13 .font {
+    font-size: 14px;
     font-family: "Helvetica", Times, serif;
     color: #000000;
     text-align: center;
@@ -151,9 +47,198 @@
     display: table-cell;
 }
 
-#RoundedTransparentRectangle.shape {
-    width: 139.77049868766406px;
-    height: 91.35832020997375px;
-    background: #4472C4;
+#Rectangle13.shape {
+    width: 104.28314960629922px;
+    height: 37.70771653543307px;
+    background: #F2F2F2;
     display: table;
+}
+
+#Rectangle14.position {
+    position: absolute;
+    top: 608.9771128608924px;
+    left: 354.8311811023622px;
+}
+
+#Rectangle14 .font {
+    font-size: 14px;
+    font-family: "Helvetica", Times, serif;
+    color: #000000;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+#Rectangle14.shape {
+    width: 104.28314960629922px;
+    height: 37.70771653543307px;
+    background: #F2F2F2;
+    display: table;
+}
+
+#Rectangle15.position {
+    position: absolute;
+    top: 607.3331233595801px;
+    left: 730.3743832020998px;
+}
+
+#Rectangle15 .font {
+    font-size: 14px;
+    font-family: "Helvetica", Times, serif;
+    color: #000000;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+#Rectangle15.shape {
+    width: 104.28314960629922px;
+    height: 37.70771653543307px;
+    background: #F2F2F2;
+    display: table;
+}
+
+#Rectangle16.position {
+    position: absolute;
+    top: 605.6891338582677px;
+    left: 1105.9175853018373px;
+}
+
+#Rectangle16 .font {
+    font-size: 14px;
+    font-family: "Helvetica", Times, serif;
+    color: #000000;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+#Rectangle16.shape {
+    width: 104.28314960629922px;
+    height: 37.70771653543307px;
+    background: #F2F2F2;
+    display: table;
+}
+
+#Rectangle17.position {
+    position: absolute;
+    top: 653.5889763779528px;
+    left: 0px;
+}
+
+#Rectangle17.shape {
+    width: 1280px;
+    height: 66.41102362204725px;
+    background: #FFFFFF;
+    display: table;
+}
+
+#Rectangle18.position {
+    position: absolute;
+    top: 669.2372703412074px;
+    left: 427.6622572178478px;
+}
+
+#Rectangle18 .font {
+    font-size: 10.5px;
+    font-family: "Helvetica", Times, serif;
+    color: #000000;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+#Rectangle18.shape {
+    width: 406.9952755905512px;
+    height: 36.82194225721785px;
+    background: transparent;
+    display: table;
+}
+
+#Rectangle19.position {
+    position: absolute;
+    top: 670.8171128608924px;
+    left: -17.680209973753282px;
+}
+
+#Rectangle19 .font {
+    font-size: 10.5px;
+    font-family: "Helvetica", Times, serif;
+    color: #0070C0;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+#Rectangle19.shape {
+    width: 406.9952755905512px;
+    height: 36.82194225721785px;
+    background: transparent;
+    display: table;
+}
+
+#Rectangle20.position {
+    position: absolute;
+    top: 670.8170078740158px;
+    left: 923.5616797900262px;
+}
+
+#Rectangle20 .font {
+    font-size: 10.5px;
+    font-family: "Helvetica", Times, serif;
+    color: #000000;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+#Rectangle20.shape {
+    width: 406.9952755905512px;
+    height: 36.82194225721785px;
+    background: transparent;
+    display: table;
+}
+
+#Graphic10.position {
+    position: absolute;
+    top: 504.86729658792655px;
+    left: 725.8446194225722px;
+}
+
+#Graphic10.shape {
+    width: 108.81291338582677px;
+    height: 108.81291338582677px;
+}
+
+#Graphic12.position {
+    position: absolute;
+    top: 498.21459317585305px;
+    left: 1105.9177952755906px;
+}
+
+#Graphic12.shape {
+    width: 96px;
+    height: 96px;
+}
+
+#Picture21.position {
+    position: absolute;
+    top: 507.1648293963255px;
+    left: 363.79958005249347px;
+}
+
+#Picture21.shape {
+    width: 95.31475065616799px;
+    height: 95.31475065616799px;
+}
+
+#Picture22.position {
+    position: absolute;
+    top: 476.1713385826772px;
+    left: 47.6844094488189px;
+}
+
+#Picture22.shape {
+    width: 157.54341207349083px;
+    height: 157.54341207349083px;
 }

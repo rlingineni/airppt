@@ -1,4 +1,6 @@
 import { CheckValidObject as checkPath } from "@helpers/checkobj";
+import ColorParser from "./colorparser";
+import LineParser from "./lineparser";
 import { PowerpointElement, ElementType, TextAlignment, FontAttributes, SpecialityType } from "@models/pptelement";
 
 export default class ShapeParser {
@@ -25,10 +27,21 @@ export default class ShapeParser {
 
 	public static determineSpecialityType(element): SpecialityType {
 		if (checkPath(element, '["p:nvSpPr"][0]["p:cNvSpPr"][0]["$"]["txBox"]') == 1) {
-			console.log("is textbox");
 			return SpecialityType.Textbox;
 		}
 
+		if (element["p:nvPicPr"]) {
+			return SpecialityType.Image;
+		}
+
 		return SpecialityType.None;
+	}
+
+	public static extractShapeElements(element): PowerpointElement["shape"] {
+		return {
+			fillColor: ColorParser.getShapeFillColor(element) || "FFFFFF",
+			border: LineParser.extractLineElements(element),
+			opacity: ColorParser.getOpacity(element)
+		};
 	}
 }

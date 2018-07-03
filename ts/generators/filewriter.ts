@@ -1,19 +1,19 @@
-import fs = require('fs')
+import fs = require("fs");
+import { AnySrvRecord } from "dns";
 //take in HTML and CSS and generate a nice bundle!
 
+export { WriteOutputFile };
 
-export default WriteOutputFile
+function WriteOutputFile(filename: string, value: string, options: any = {}): Promise<boolean> {
+	return new Promise(function(resolve, reject) {
+		fs.writeFile("../output/" + filename, value, options, function(err) {
+			if (err) {
+				console.log(filename + " File Writing Error");
+				reject(err);
+			}
 
-
-function WriteOutputFile(filename: string, value: string) {
-
-    fs.writeFile("../output/" + filename, value, function (err) {
-        if (err) {
-            console.log(filename + " File Writing Error")
-            return console.log(err);
-        }
-
-        console.log("The " + filename + " file was saved!");
-    });
+			console.log("The " + filename + " file was written!");
+			resolve(true);
+		});
+	});
 }
-

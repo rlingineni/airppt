@@ -1,10 +1,9 @@
 import { PowerpointElement, ElementType, TextAlignment, FontAttributes, SpecialityType, LinkType } from "@models/pptelement";
-import { CheckValidObject as checkPath } from "@helpers/checkobj";
+import { CheckValidObject as checkPath, CheckValidObject } from "@helpers/checkobj";
 import ColorParser from "./colorparser";
 import ShapeParser from "./shapeparser";
 import ParagraphParser from "./paragraphparser";
 import SlideRelationsParser from "./relparser";
-import LineParser from "./lineparser";
 
 class PowerpointElementParser {
 	private element;
@@ -16,19 +15,31 @@ class PowerpointElementParser {
 
 	public getProcessedElement(rawElement): PowerpointElement {
 		this.element = rawElement;
-		let elementName: string =
-			this.element["p:nvSpPr"][0]["p:cNvPr"][0]["$"]["title"] || this.element["p:nvSpPr"][0]["p:cNvPr"][0]["$"]["name"].replace(/\s/g, "");
+		let isImage = false;
+
+		let elementName: string = "";
+		if (this.element["p:nvSpPr"]) {
+			elementName =
+				this.element["p:nvSpPr"][0]["p:cNvPr"][0]["$"]["title"] ||
+				this.element["p:nvSpPr"][0]["p:cNvPr"][0]["$"]["name"].replace(/\s/g, "");
+		} else {
+			//if the element is an image
+			elementName =
+				this.element["p:nvPicPr"][0]["p:cNvPr"][0]["$"]["title"] ||
+				this.element["p:nvPicPr"][0]["p:cNvPr"][0]["$"]["name"].replace(/\s/g, "");
+		}
 
 		//elements must have a position, or else skip them TO-DO: Allow Placeholder positions
 		if (!this.element["p:spPr"][0]["a:xfrm"]) {
 			return null;
 		}
-		console.log(elementName);
+
 		let elementPosition = this.element["p:spPr"][0]["a:xfrm"][0]["a:off"][0]["$"];
 		let elementPresetType = this.element["p:spPr"][0]["a:prstGeom"][0]["$"]["prst"];
 		let elementOffsetPosition = this.element["p:spPr"][0]["a:xfrm"][0]["a:ext"][0]["$"];
 
-		let paragraphInfo = this.element["p:txBody"][0]["a:p"][0];
+		let paragraphInfo = CheckValidObject(this.element, '["p:txBody"][0]["a:p"][0]');
+
 		let pptElement: PowerpointElement = {
 			name: elementName,
 			shapeType: ShapeParser.determineShapeType(elementPresetType),
@@ -42,10 +53,7 @@ class PowerpointElementParser {
 				cy: elementOffsetPosition.cy
 			},
 			paragraph: ParagraphParser.extractParagraphElements(paragraphInfo),
-			shape: {
-				fillColor: ColorParser.getShapeFillColor(this.element) || "FFFFFF",
-				border: LineParser.extractLineElements(this.element)
-			},
+			shape: ShapeParser.extractShapeElements(this.element),
 			links: SlideRelationsParser.resolveShapeHyperlinks(this.element),
 			raw: rawElement
 		};

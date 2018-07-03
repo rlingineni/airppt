@@ -25,12 +25,34 @@ export default class ColorParser {
 
 		//spPR[NOFILL] return null
 		if (shapeProperties["a:noFill"]) {
-			return "transparent";
+			return "00FFFFF";
 		}
 
 		//look at p:style for shape default theme values
-		let shapeStyle = element["p:style"][0];
+		let shapeStyle = checkPath(element, '["p:style"][0]');
 		return this.getThemeColor(checkPath(shapeStyle, '["a:fillRef"]["0"]["a:schemeClr"]["0"]["$"]["val"]')) || "FFFFFF";
+	}
+
+	public static getOpacity(element): number {
+		//spPR takes precdence
+		let shapeProperties = element["p:spPr"][0];
+		if (shapeProperties["a:solidFill"]) {
+			//determine if it is theme or solid fill
+			if (checkPath(shapeProperties, '["a:solidFill"]["0"]["a:srgbClr"]["0"]["a:alpha"][0]["$"]["val"]') != undefined) {
+				return shapeProperties["a:solidFill"]["0"]["a:srgbClr"]["0"]["a:alpha"][0]["$"]["val"];
+			}
+
+			if (checkPath(shapeProperties, '["a:solidFill"]["0"]["a:schemeClr"]["0"]["a:alpha"][0]["$"]["val"]') != undefined) {
+				return shapeProperties["a:solidFill"]["0"]["a:schemeClr"]["0"]["a:alpha"][0]["$"]["val"];
+			}
+		}
+
+		//spPR[NOFILL] return null
+		if (shapeProperties["a:noFill"]) {
+			return 0;
+		}
+
+		return 1;
 	}
 
 	public static getTextColors(textElement): string {
@@ -57,4 +79,6 @@ export default class ColorParser {
 
 		return null;
 	}
+
+	public static determineShapeOpacity(element) {}
 }
