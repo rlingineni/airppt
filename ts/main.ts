@@ -1,17 +1,35 @@
 require("module-alias/register");
+const argv = require("optimist").default({ PositionType: "abs" }).argv;
 import GridScaler from "./gridscalerts";
+import { WriteOutputFile, CSSGenerator, HTMLGenerator } from "@generators/index";
 import ZipHandler from "@helpers/ziphandler";
-import CSSGenerator from "@generators/cssgenerator";
-import HTMLGenerator from "@generators/htmlgenerator";
 import PowerpointElementParser from "./parsers/elementparser";
-import { WriteOutputFile } from "@generators/filewriter";
 import * as ShapeRenderers from "@renderers/index";
 import { SpecialityType } from "@models/pptelement";
 import { PositionType } from "@models/css";
+import { BuildOptions } from "@models/options";
 
-loadZip();
-async function loadZip() {
-	await ZipHandler.loadZip("../TeluguApp.pptx");
+GenerateUI();
+
+export default function GenerateUI() {
+	console.log(argv);
+	let config: BuildOptions = {
+		PositionType: "abs",
+		powerpointFileName: "../TeluguApp.pptx"
+	};
+
+	if (config.PositionType === "abs") {
+	} else if (config.PositionType === "grid") {
+	} else {
+		throw Error("Invalid element positioning type in arguements");
+	}
+
+	//do some stuff based on the
+	loadZip(config);
+}
+
+async function loadZip(config: BuildOptions) {
+	await ZipHandler.loadZip(config.powerpointFileName);
 	let slideShowGlobals = await ZipHandler.parseSlideAttributes("ppt/presentation.xml");
 	let slideShowTheme = await ZipHandler.parseSlideAttributes("ppt/theme/theme1.xml");
 

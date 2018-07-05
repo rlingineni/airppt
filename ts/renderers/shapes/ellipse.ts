@@ -1,4 +1,4 @@
-import { PowerpointElement } from "@models/pptelement";
+import { PowerpointElement, FillType } from "@models/pptelement";
 import ElementRenderer from "@renderers/renderer";
 import GridScaler from "gridscalerts";
 import * as format from "string-template";
@@ -27,7 +27,7 @@ export default class Ellipse extends ElementRenderer {
 				name: element.name,
 				width: scaler.getScaledValue(element.elementOffsetPosition.cx),
 				height: scaler.getScaledValue(element.elementOffsetPosition.cy),
-				background: element.shape.fillColor
+				background: element.shape.fill.fillType == FillType.Solid ? "#" + element.shape.fill.fillColor : "transparent"
 			}
 		);
 

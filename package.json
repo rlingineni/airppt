@@ -2,8 +2,10 @@
 	"name": "airppt",
 	"version": "1.0.0",
 	"description": "",
-	"main": "main.js",
+	"main": "built/main.js",
+	"types": "built/main.d.ts",
 	"scripts": {
+		"build": "tsc",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "",
@@ -12,6 +14,7 @@
 		"@types/jsonpath": "^0.2.0",
 		"@types/lodash": "^4.14.110",
 		"@types/node": "^10.5.0",
+		"@types/optimist": "0.0.29",
 		"beautify": "0.0.8",
 		"decode-tiff": "^0.2.1",
 		"jquery": "^3.3.1",
@@ -20,6 +23,7 @@
 		"jszip": "^3.1.5",
 		"lodash": "^4.17.10",
 		"module-alias": "^2.1.0",
+		"optimist": "^0.6.1",
 		"pngjs": "^3.3.3",
 		"pptx2html": "^0.3.4",
 		"string-template": "^1.0.0",
@@ -27,7 +31,8 @@
 		"xml2js-es6-promise": "^1.1.1"
 	},
 	"devDependencies": {
-		"@types/jszip": "^3.1.4"
+		"@types/jszip": "^3.1.4",
+		"typescript": "^2.9.2"
 	},
 	"_moduleAliases": {
 		"@helpers": "built/helpers/",

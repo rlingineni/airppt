@@ -2,7 +2,7 @@ import fs = require("fs");
 import { AnySrvRecord } from "dns";
 //take in HTML and CSS and generate a nice bundle!
 
-export { WriteOutputFile };
+export default WriteOutputFile;
 
 function WriteOutputFile(filename: string, value: string, options: any = {}): Promise<boolean> {
 	return new Promise(function(resolve, reject) {

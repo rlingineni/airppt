@@ -30,7 +30,10 @@ export interface PowerpointElement {
 			type: BorderType;
 			radius?: number;
 		};
-		fillColor: string;
+		fill: {
+			fillType: FillType;
+			fillColor: string;
+		};
 		opacity: number;
 	};
 	fontStyle?: {
@@ -88,4 +91,9 @@ export enum SpecialityType {
 export enum LinkType {
 	Asset = "Asset",
 	External = "External"
+}
+
+export enum FillType {
+	Image = "Image",
+	Solid = "Solid"
 }

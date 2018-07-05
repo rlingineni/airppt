@@ -4,13 +4,14 @@ const pptelement_1 = require("@models/pptelement");
 const renderer_1 = require("@renderers/renderer");
 const format = require("string-template");
 const paragraph_1 = require("../helpers/paragraph");
+const assetMover_1 = require("../helpers/assetMover");
 const border_1 = require("@renderers/helpers/border");
 /**
  * Takes in an element and it's attributes to generate a rectangle and places elements in correct place. The scaler can help you convert heights and widths.
  * Raw GlobalXML values are passed in for reference such as theme.xml and presentation.xml
  */
 class Rectangle extends renderer_1.default {
-    //NOTE: We don't have to worry about width and height, our positioner takes care of that for us
+    //NOTE: We don't have to worry about positioning, our scaler and the base class takes care of that for us
     constructor(scaler, element, rawSlideShowGlobals, rawSlideShowTheme, PositionType) {
         super(scaler, element, rawSlideShowGlobals, rawSlideShowTheme, PositionType);
         let css = format(`#{name}.shape{
@@ -22,7 +23,7 @@ class Rectangle extends renderer_1.default {
             name: element.name,
             width: scaler.getScaledValue(element.elementOffsetPosition.cx),
             height: scaler.getScaledValue(element.elementOffsetPosition.cy),
-            background: element.shape.opacity == 0 ? "transparent" : "#" + element.shape.fillColor
+            background: this.determineBackground()
         });
         //stylize text in this element with a generic paragraph helper, may or may not work on all shapes
         if (element.paragraph) {
@@ -51,6 +52,23 @@ class Rectangle extends renderer_1.default {
             this.$("#" + this.element.name).append(paragraphHTML); //add the paragraph div within t
         }
         return this.$("#" + this.element.name)[0].outerHTML;
+    }
+    determineBackground() {
+        if (this.element.shape.opacity == 0) {
+            return "transparent";
+        }
+        let fillDetails = this.element.shape.fill;
+        if (fillDetails.fillType == pptelement_1.FillType.Solid) {
+            return "#" + this.element.shape.fill.fillColor;
+        }
+        if (fillDetails.fillType == pptelement_1.FillType.Image) {
+            assetMover_1.default(fillDetails.fillColor, true);
+            //change tiff references to pngs
+            let imagePath = this.getOutputImagePath(fillDetails.fillColor);
+            console.log("GOT Imagepath as ", imagePath);
+            return format("url({0})", imagePath);
+        }
+        return "transparent";
     }
 }
 exports.default = Rectangle;

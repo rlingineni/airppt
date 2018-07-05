@@ -1,7 +1,7 @@
 import { CheckValidObject as checkPath } from "@helpers/checkobj";
 import ColorParser from "./colorparser";
 import LineParser from "./lineparser";
-import { PowerpointElement, ElementType, TextAlignment, FontAttributes, SpecialityType } from "@models/pptelement";
+import { PowerpointElement, ElementType, TextAlignment, FontAttributes, SpecialityType, FillType } from "@models/pptelement";
 
 export default class ShapeParser {
 	public static determineShapeType(prst): ElementType {
@@ -39,7 +39,7 @@ export default class ShapeParser {
 
 	public static extractShapeElements(element): PowerpointElement["shape"] {
 		return {
-			fillColor: ColorParser.getShapeFillColor(element) || "FFFFFF",
+			fill: ColorParser.getShapeFill(element),
 			border: LineParser.extractLineElements(element),
 			opacity: ColorParser.getOpacity(element)
 		};

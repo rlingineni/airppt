@@ -9,19 +9,35 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 require("module-alias/register");
+const argv = require("optimist").default({ PositionType: "abs" }).argv;
 const gridscalerts_1 = require("./gridscalerts");
+const index_1 = require("@generators/index");
 const ziphandler_1 = require("@helpers/ziphandler");
-const cssgenerator_1 = require("@generators/cssgenerator");
-const htmlgenerator_1 = require("@generators/htmlgenerator");
 const elementparser_1 = require("./parsers/elementparser");
-const filewriter_1 = require("@generators/filewriter");
 const ShapeRenderers = require("@renderers/index");
 const pptelement_1 = require("@models/pptelement");
 const css_1 = require("@models/css");
-loadZip();
-function loadZip() {
+GenerateUI();
+function GenerateUI() {
+    console.log(argv);
+    let config = {
+        PositionType: "abs",
+        powerpointFileName: "../TeluguApp.pptx"
+    };
+    if (config.PositionType === "abs") {
+    }
+    else if (config.PositionType === "grid") {
+    }
+    else {
+        throw Error("Invalid element positioning type in arguements");
+    }
+    //do some stuff based on the
+    loadZip(config);
+}
+exports.default = GenerateUI;
+function loadZip(config) {
     return __awaiter(this, void 0, void 0, function* () {
-        yield ziphandler_1.default.loadZip("../TeluguApp.pptx");
+        yield ziphandler_1.default.loadZip(config.powerpointFileName);
         let slideShowGlobals = yield ziphandler_1.default.parseSlideAttributes("ppt/presentation.xml");
         let slideShowTheme = yield ziphandler_1.default.parseSlideAttributes("ppt/theme/theme1.xml");
         let slideSizeX = slideShowGlobals["p:presentation"]["p:sldSz"][0]["$"]["cx"];
@@ -32,7 +48,7 @@ function loadZip() {
         console.log(JSON.stringify(slideAttributes));
         //Parse ppt/presentation.xml and get size
         let scaler = new gridscalerts_1.default(slideSizeX, slideSizeY, 12);
-        let htmlGen = new htmlgenerator_1.default(css_1.PositionType.Absolute);
+        let htmlGen = new index_1.HTMLGenerator(css_1.PositionType.Absolute);
         let pptElementParser = new elementparser_1.default(slideShowGlobals, slideShowTheme, slideRelations);
         let slideShapes = slideAttributes["p:sld"]["p:cSld"][0]["p:spTree"][0]["p:sp"];
         let slideImages = slideAttributes["p:sld"]["p:cSld"][0]["p:spTree"][0]["p:pic"];
@@ -55,8 +71,8 @@ function loadZip() {
             }
         }
         //Create Output HTML file
-        filewriter_1.WriteOutputFile("abs.css", cssgenerator_1.default.generateCSS(css_1.PositionType.Absolute, elementsCSS));
-        filewriter_1.WriteOutputFile("grid.css", cssgenerator_1.default.generateCSS(css_1.PositionType.Grid, elementsCSS));
-        filewriter_1.WriteOutputFile("index.html", htmlGen.getGeneratedHTML());
+        index_1.WriteOutputFile("abs.css", index_1.CSSGenerator.generateCSS(css_1.PositionType.Absolute, elementsCSS));
+        index_1.WriteOutputFile("grid.css", index_1.CSSGenerator.generateCSS(css_1.PositionType.Grid, elementsCSS));
+        index_1.WriteOutputFile("index.html", htmlGen.getGeneratedHTML());
     });
 }

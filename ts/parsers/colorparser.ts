@@ -1,6 +1,6 @@
-import { CheckValidObject as checkPath } from "@helpers/checkobj";
-
-import { PowerpointElement, ElementType, TextAlignment, FontAttributes, SpecialityType } from "@models/pptelement";
+import { CheckValidObject as checkPath, CheckValidObject } from "@helpers/checkobj";
+import RelationParser from "./relparser";
+import { PowerpointElement, ElementType, TextAlignment, FontAttributes, SpecialityType, FillType } from "@models/pptelement";
 
 export default class ColorParser {
 	static slideShowTheme;
@@ -11,26 +11,43 @@ export default class ColorParser {
 	public static setSlideShowTheme(theme) {
 		this.slideShowTheme = theme;
 	}
-	public static getShapeFillColor(element): string {
+	public static getShapeFill(element): PowerpointElement["shape"]["fill"] {
 		//spPR takes precdence
 		let shapeProperties = element["p:spPr"][0];
-		if (shapeProperties["a:solidFill"]) {
-			//determine if it is theme or solid fill
-			return (
-				checkPath(shapeProperties, '["a:solidFill"]["0"]["a:srgbClr"]["0"]["$"]["val"]') ||
-				this.getThemeColor(checkPath(shapeProperties, '["a:solidFill"]["0"]["a:schemeClr"]["0"]["$"]["val"]')) ||
-				"FFFFFF"
-			);
-		}
+
+		let fillType: PowerpointElement["shape"]["fill"] = {
+			fillType: FillType.Solid,
+			fillColor: "00FFFFF"
+		};
 
 		//spPR[NOFILL] return null
 		if (shapeProperties["a:noFill"]) {
-			return "00FFFFF";
+			return fillType;
+		}
+
+		//Shape fill is an image
+		if (shapeProperties["a:blipFill"]) {
+			let relId = shapeProperties["a:blipFill"][0]["a:blip"][0]["$"]["r:embed"];
+			fillType.fillType = FillType.Image;
+			fillType.fillColor = RelationParser.getRelationDetails(relId).Uri || "NONE";
+			return fillType;
+		}
+
+		if (shapeProperties["a:solidFill"]) {
+			//determine if it is theme or solid fill
+			let solidColor =
+				checkPath(shapeProperties, '["a:solidFill"]["0"]["a:srgbClr"]["0"]["$"]["val"]') ||
+				this.getThemeColor(checkPath(shapeProperties, '["a:solidFill"]["0"]["a:schemeClr"]["0"]["$"]["val"]')) ||
+				"FFFFFF";
+
+			fillType.fillColor = solidColor;
+			return fillType;
 		}
 
 		//look at p:style for shape default theme values
 		let shapeStyle = checkPath(element, '["p:style"][0]');
-		return this.getThemeColor(checkPath(shapeStyle, '["a:fillRef"]["0"]["a:schemeClr"]["0"]["$"]["val"]')) || "FFFFFF";
+		fillType.fillColor = this.getThemeColor(checkPath(shapeStyle, '["a:fillRef"]["0"]["a:schemeClr"]["0"]["$"]["val"]')) || "FFFFFF";
+		return fillType;
 	}
 
 	public static getOpacity(element): number {

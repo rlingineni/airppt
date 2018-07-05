@@ -8,26 +8,26 @@
 
 #BackgroundImage.position {
     position: absolute;
-    top: -163.42488188976378px;
+    top: -0.7645144356955381px;
     left: 0px;
 }
 
 #BackgroundImage.shape {
     width: 1280px;
-    height: 732.4932283464567px;
-    background: #4472C4;
+    height: 569.8328608923885px;
+    background: url(assets/media/image3.jpeg);
     display: table;
 }
 
 #Rectangle4.position {
     position: absolute;
-    top: 469.47947506561684px;
+    top: 491.81963254593177px;
     left: 0px;
 }
 
 #Rectangle4.shape {
     width: 1280px;
-    height: 184.10950131233596px;
+    height: 177.4176377952756px;
     background: #F2F2F2;
     display: table;
 }
@@ -56,8 +56,8 @@
 
 #Rectangle14.position {
     position: absolute;
-    top: 608.9771128608924px;
-    left: 354.8311811023622px;
+    top: 614.1862467191602px;
+    left: 357.19853018372703px;
 }
 
 #Rectangle14 .font {
@@ -78,8 +78,8 @@
 
 #Rectangle15.position {
     position: absolute;
-    top: 607.3331233595801px;
-    left: 730.3743832020998px;
+    top: 617.4848293963255px;
+    left: 728.211968503937px;
 }
 
 #Rectangle15 .font {
@@ -100,8 +100,8 @@
 
 #Rectangle16.position {
     position: absolute;
-    top: 605.6891338582677px;
-    left: 1105.9175853018373px;
+    top: 615.4777952755906px;
+    left: 1105.9177952755906px;
 }
 
 #Rectangle16 .font {
@@ -199,9 +199,53 @@
     display: table;
 }
 
+#Rectangle24.position {
+    position: absolute;
+    top: 111.21228346456694px;
+    left: 276.4002099737533px;
+}
+
+#Rectangle24 .font {
+    font-size: 60px;
+    font-family: "Helvetica", Times, serif;
+    color: #000000;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+#Rectangle24.shape {
+    width: 760.5848818897638px;
+    height: 203.5862467191601px;
+    background: transparent;
+    display: table;
+}
+
+#Rectangle25.position {
+    position: absolute;
+    top: 266.9867716535433px;
+    left: 490.20682414698166px;
+}
+
+#Rectangle25 .font {
+    font-size: 14px;
+    font-family: "Helvetica", Times, serif;
+    color: #000000;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+#Rectangle25.shape {
+    width: 299.5862467191601px;
+    height: 79.4482939632546px;
+    background: transparent;
+    display: table;
+}
+
 #Graphic10.position {
     position: absolute;
-    top: 504.86729658792655px;
+    top: 513.3804724409449px;
     left: 725.8446194225722px;
 }
 
@@ -212,8 +256,8 @@
 
 #Graphic12.position {
     position: absolute;
-    top: 498.21459317585305px;
-    left: 1105.9177952755906px;
+    top: 521.4848293963255px;
+    left: 1127.0593175853019px;
 }
 
 #Graphic12.shape {
@@ -223,7 +267,7 @@
 
 #Picture21.position {
     position: absolute;
-    top: 507.1648293963255px;
+    top: 515.6780052493439px;
     left: 363.79958005249347px;
 }
 
@@ -234,7 +278,7 @@
 
 #Picture22.position {
     position: absolute;
-    top: 476.1713385826772px;
+    top: 484.6845144356956px;
     left: 47.6844094488189px;
 }
 

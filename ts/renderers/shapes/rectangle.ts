@@ -1,18 +1,20 @@
-import { PowerpointElement, LinkType } from "@models/pptelement";
+import { PowerpointElement, LinkType, FillType } from "@models/pptelement";
 import ElementRenderer from "@renderers/renderer";
 import GridScaler from "gridscalerts";
 import * as format from "string-template";
 import { PositionType } from "@models/css";
 import GenerateParagraphCSS from "../helpers/paragraph";
+import copyAssetToOutputDirectory from "../helpers/assetMover";
 import GenerateBorderCSS from "@renderers/helpers/border";
 /**
  * Takes in an element and it's attributes to generate a rectangle and places elements in correct place. The scaler can help you convert heights and widths.
  * Raw GlobalXML values are passed in for reference such as theme.xml and presentation.xml
  */
 export default class Rectangle extends ElementRenderer {
-	//NOTE: We don't have to worry about width and height, our positioner takes care of that for us
+	//NOTE: We don't have to worry about positioning, our scaler and the base class takes care of that for us
 	constructor(scaler: GridScaler, element: PowerpointElement, rawSlideShowGlobals, rawSlideShowTheme, PositionType: PositionType) {
 		super(scaler, element, rawSlideShowGlobals, rawSlideShowTheme, PositionType);
+
 		let css = format(
 			`#{name}.shape{
 			width:{width}px;
@@ -24,7 +26,7 @@ export default class Rectangle extends ElementRenderer {
 				name: element.name,
 				width: scaler.getScaledValue(element.elementOffsetPosition.cx),
 				height: scaler.getScaledValue(element.elementOffsetPosition.cy),
-				background: element.shape.opacity == 0 ? "transparent" : "#" + element.shape.fillColor
+				background: this.determineBackground()
 			}
 		);
 
@@ -65,5 +67,26 @@ export default class Rectangle extends ElementRenderer {
 		}
 
 		return this.$("#" + this.element.name)[0].outerHTML;
+	}
+
+	determineBackground(): string {
+		if (this.element.shape.opacity == 0) {
+			return "transparent";
+		}
+
+		let fillDetails = this.element.shape.fill;
+		if (fillDetails.fillType == FillType.Solid) {
+			return "#" + this.element.shape.fill.fillColor;
+		}
+
+		if (fillDetails.fillType == FillType.Image) {
+			copyAssetToOutputDirectory(fillDetails.fillColor, true);
+			//change tiff references to pngs
+			let imagePath = this.getOutputImagePath(fillDetails.fillColor);
+			console.log("GOT Imagepath as ", imagePath);
+			return format("url({0})", imagePath);
+		}
+
+		return "transparent";
 	}
 }

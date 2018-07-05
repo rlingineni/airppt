@@ -81,6 +81,15 @@ abstract class ElementRenderer {
 		return css;
 	}
 
+	protected getOutputImagePath(tiffPath) {
+		let imagePath = tiffPath.replace("ppt", "assets");
+		let fileExtension = tiffPath.split(".").pop();
+		if (fileExtension == "tiff") {
+			imagePath = imagePath.replace(".tiff", ".png"); //tiffs are converted to pngs, so use the new filepath
+		}
+
+		return imagePath;
+	}
 	protected addCSSAttribute(css: string): void {
 		this.elementCSS.push(css); //add the new css object
 	}

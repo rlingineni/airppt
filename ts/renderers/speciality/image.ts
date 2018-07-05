@@ -21,15 +21,11 @@ export default class Image extends ElementRenderer {
 			}
 		);
 		this.addCSSAttribute(css);
-		copyAssetToOutputDirectory(this.element.links.Uri, true);
+		copyAssetToOutputDirectory(this.element.links.Uri, true); //also convert tiff to png
 	}
 
 	render(): string {
-		let imagePath = this.element.links.Uri.replace("ppt", "assets");
-		let fileExtension = this.element.links.Uri.split(".").pop();
-		if (fileExtension == "tiff") {
-			imagePath = imagePath.replace(".tiff", ".png"); //tiffs are converted to pngs
-		}
+		let imagePath = this.getOutputImagePath(this.element.links.Uri);
 
 		return format('<img id="{0}" src="{1}" class="position shape">', this.element.name, imagePath);
 	}

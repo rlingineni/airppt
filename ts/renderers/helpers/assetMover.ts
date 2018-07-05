@@ -1,7 +1,7 @@
 import ZipHandler from "@helpers/ziphandler";
 import fs = require("fs");
 import convertToPNG from "../helpers/tiffConverter";
-import { WriteOutputFile } from "@generators/filewriter";
+import { WriteOutputFile } from "@generators/index";
 export default copyAssetToOutputDirectory;
 
 async function copyAssetToOutputDirectory(assetPath, convertTifftoPNG: boolean) {
