@@ -1,36 +1,40 @@
 # Air PPT
 
-### Background
+### Get Started
 
-I'm constantly coming up with ideas for apps that will help me in my daily use. I'm a good programmer, but not so much a UI guy. It's tedious and it takes up a lot of my time. The perfectionist in me isn't happy when the buttons aren't aligned or colored correctly, and I spend much more anticipated time then expected tinkering with CSS and HTML Element than I want to.
 
-### This project
+----- Making a UI Powerpoint -----
+1. Create a blank powerpoint, call it whatever.
 
-Powerpoint's simple drag and drop interface makes it easy to prototype and demonstrate UIs. However, whenever we want to build the "real" thing, we have to startover as nothing ports over from our intial powerpoint elements except the colors and layouts that we manually input. Tools such as Sketch or [GrapeJS](https://grapesjs.com/) exist, but they come with a learning curve, a cost and bloat. Existing PPT2HTML projects exist, but they aren't designed to be extensible - just for display in a browser.
+2. Delete everything on the slides, no placeholders or anything (a blank canvas).
 
-This project will make my life easier because I can:
+3. Add some shapes. At the moment we really only support rectangles. Add some text. Colors.
 
-1.  Drop some shapes/images/textboxes in powerpoint for a UI,
-2.  Generate HTML and CSS,
-3.  Add life to the elements via Javascript
-4.  Deploy my app with Electron or host on a server
+4. Copy pasta some images from the internet to add some flare.
 
-## How it works?
+5. Add a 'textbox', note how they are different than rectangles (usually transparent and no outline)
 
-The difficulty in this project is parsing Office Open XML format and converting that to renderable HTML. The project is written in `Typescript`. In order to remain extensible, this is a safe choice.
+--------- The program -------
+1. Clone/Download this project. 
 
-Here is the flow:
+2. Move the powerpoint from step one into this folder
 
-    Parse slide xml-->
-    Retrieve shapes-->
-    Convert shapes to localized PPT Element Model-->
-    Call a Renderer that converts the PPT Element to HTML & CSS-->
-    Generate HTML & CSS files
+2. CD and open the project in your Terminal. You want to be in the `built` folder
 
-## Contributing
-
-Powerpoint does a lot, this project doesn't. But the beauty of building from scratch is that I built it to be extensible. To make a renderer, head to the renderers folder:
+3. Run the program like this
 
 ```
-
+node main.js -i whatevermypowerpoint.pptx 
 ```
+
+You can also pass in additional params like:
+[slide][s] - The slide number you want to generate HTML/CSS for
+[position][p] - `grid` or `abs`. If you choose grid, the layout will be proportional (better for responsive designs)
+
+
+
+4. Check the contents of the `output` folder. It should have an index.html and an abs.css (or grid.css) depending on how you wanted the elements to be laid out.
+
+
+### More Info:
+Check out the wiki for some background, contributing and how this works.
