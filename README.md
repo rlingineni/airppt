@@ -1,9 +1,7 @@
-# Air PPT
+# AirPPT
 
 ### Get Started
-
-
------ Making a UI Powerpoint -----
+###### Making a UI Powerpoint
 1. Create a blank powerpoint, call it whatever.
 
 2. Delete everything on the slides, no placeholders or anything (a blank canvas).
@@ -14,7 +12,7 @@
 
 5. Add a 'textbox', note how they are different than rectangles (usually transparent and no outline)
 
---------- The program -------
+###### The program 
 1. Clone/Download this project. 
 
 2. Move the powerpoint from step one into this folder
