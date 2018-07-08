@@ -6,79 +6,93 @@
     width: 100vw;
 }
 
-#NextLetterButton.position {
+#Rectangle4.position {
     position: absolute;
-    top: 597.6567979002625px;
-    left: 1106.5727034120735px;
+    top: 0px;
+    left: 0px;
 }
 
-#NextLetterButton.shape {
-    width: 0;
-    height: 0;
-    border-top: 42.66666666666667px solid transparent;
-    border-left: 88.88892388451444px solid #4472C4;
-    border-bottom: 42.66666666666667px solid transparent;
+#Rectangle4.shape {
+    width: 1280px;
+    height: 107.58624671916012px;
+    background: #4472C4;
+    display: table;
 }
 
-#RestartButton.position {
+#TextBox6.position {
     position: absolute;
-    top: 599.4344356955381px;
-    left: 926.5453018372704px;
+    top: 305.73228346456693px;
+    left: 354.20682414698166px;
 }
 
-#RestartButton .font {
-    font-size: 28px;
-    font-family: "Times", Times, serif;
+#TextBox6.shape {
+    width: 529.6552230971129px;
+    height: 38.77501312335958px;
+    background: ##00FFFFF;
+}
+
+#Rectangle9.position {
+    position: absolute;
+    top: 183.72419947506563px;
+    left: 354.20682414698166px;
+}
+
+#Rectangle9 .font {
+    font-size: 54px;
+    font-family: "Arial", Times, serif;
+    color: #000000;
+    text-align: left;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+#Rectangle9.shape {
+    width: 529.6552230971129px;
+    height: 107.58624671916012px;
+    background: transparent;
+    display: table;
+}
+
+#Rectangle11.position {
+    position: absolute;
+    top: 25.714330708661418px;
+    left: 18.85711286089239px;
+}
+
+#Rectangle11 .font {
+    font-size: 12px;
+    font-family: "Helvetica", Times, serif;
     color: #000000;
     text-align: center;
     vertical-align: middle;
     display: table-cell;
 }
 
-#RestartButton.shape {
-    width: 149.33333333333334px;
-    height: 85.33343832020998px;
-    background: #F44D6A;
+#Rectangle11.shape {
+    width: 142.28577427821523px;
+    height: 54.85711286089239px;
+    background: #5B9BD5;
     display: table;
 }
 
-#LetterBox.position {
+#Rectangle12.position {
     position: absolute;
-    top: -47.19643044619423px;
-    left: 131.5069816272966px;
+    top: 25.714330708661418px;
+    left: 180px;
 }
 
-#LetterBox .font {
-    font-size: 413px;
-    font-family: "lucida grande", Times, serif;
-    color: #222222;
+#Rectangle12 .font {
+    font-size: 12px;
+    font-family: "Helvetica", Times, serif;
+    color: #000000;
     text-align: center;
     vertical-align: middle;
     display: table-cell;
 }
 
-#LetterBox.shape {
-    width: 994.1917060367455px;
-    height: 646.6308661417323px;
-    background: transparent;
-    display: table;
-}
-
-#Rectangle2.position {
-    position: absolute;
-    top: 56.547926509186354px;
-    left: 278.7945406824147px;
-}
-
-#Rectangle2.border {
-    border-style: solid;
-    border-color: 000000;
-    border-width: 6px;
-}
-
-#Rectangle2.shape {
-    width: 687.7807874015748px;
-    height: 515.5068766404199px;
-    background: transparent;
+#Rectangle12.shape {
+    width: 142.28577427821523px;
+    height: 54.85711286089239px;
+    background: #5B9BD5;
     display: table;
 }

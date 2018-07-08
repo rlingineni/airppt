@@ -3,4 +3,5 @@ export interface BuildOptions {
 	GridSize?: number;
 	outputPath?: string;
 	powerpointFilePath: string;
+	slideNum: number;
 }

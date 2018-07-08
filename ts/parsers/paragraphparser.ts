@@ -1,4 +1,4 @@
-import { CheckValidObject as checkPath } from "@helpers/checkobj";
+import { CheckValidObject as checkPath, CheckValidObject } from "@helpers/checkobj";
 import ColorParser from "./colorparser";
 import { PowerpointElement, ElementType, TextAlignment, FontAttributes, SpecialityType } from "@models/pptelement";
 
@@ -11,7 +11,7 @@ export default class ParagraphParser {
 		let pptTextElement: PowerpointElement["paragraph"] = {
 			text: textElement["a:r"][0]["a:t"].toString() || "",
 			textCharacterProperties: this.determineTextProperties(checkPath(textElement, '["a:r"][0]["a:rPr"][0]')),
-			paragraphProperties: this.determineParagraphProperties(checkPath(textElement, '["a:pPr"][0]'))
+			paragraphProperties: this.determineParagraphProperties(textElement)
 		};
 		return pptTextElement;
 	}
@@ -37,9 +37,13 @@ export default class ParagraphParser {
 		if (!paragraphProperties) {
 			return null;
 		}
+
 		let alignment: TextAlignment = TextAlignment.Left;
-		if (paragraphProperties["$"]["algn"]) {
-			switch (paragraphProperties["$"]["algn"]) {
+
+		let alignProps = checkPath(paragraphProperties, '["a:pPr"][0]["$"]["algn"]');
+
+		if (alignProps) {
+			switch (alignProps) {
 				case "ctr":
 					alignment = TextAlignment.Center;
 					break;
@@ -52,11 +56,9 @@ export default class ParagraphParser {
 				case "j":
 					alignment = TextAlignment.Justified;
 					break;
-				default:
-					alignment = TextAlignment.Left;
-					break;
 			}
 		}
+
 		console.log("align", alignment);
 		let paragraphPropertiesElement: PowerpointElement["paragraph"]["paragraphProperties"] = {
 			alignment

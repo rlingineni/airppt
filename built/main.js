@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 require("module-alias/register");
-const argv = require("optimist").default({ PositionType: "abs" }).argv;
+const argv = require("optimist").default({ PositionType: "abs", slide: 1 }).argv;
 const gridscalerts_1 = require("./gridscalerts");
 const index_1 = require("@generators/index");
 const ziphandler_1 = require("@helpers/ziphandler");
@@ -17,24 +17,36 @@ const elementparser_1 = require("./parsers/elementparser");
 const ShapeRenderers = require("@renderers/index");
 const pptelement_1 = require("@models/pptelement");
 const css_1 = require("@models/css");
+const format = require("string-template");
 GenerateUI();
 function GenerateUI() {
-    console.log(argv);
     let config = {
         PositionType: argv.PositionType,
-        powerpointFilePath: "../TeluguApp.pptx"
+        powerpointFilePath: "../TeluguApp.pptx",
+        slideNum: argv.slide
     };
-    /*if (argv.input || argv.i) {
-        config.powerpointFilePath = argv.input;
-    } else {
-        throw Error("No input filepath was given to powerpoint file");
+    if (argv.input || argv.i) {
+        config.powerpointFilePath = "../" + (argv.input || argv.i);
     }
-
+    else {
+        throw Error("No input argument with name of powerpoint file was given");
+    }
+    if (argv.position || argv.p) {
+        config.PositionType = argv.position || argv.p;
+    }
+    if (argv.slide || argv.s) {
+        config.slideNum = argv.slide || argv.s;
+    }
+    else {
+        throw Error("No slide number was given!");
+    }
     if (config.PositionType === "abs") {
-    } else if (config.PositionType === "grid") {
-    } else {
+    }
+    else if (config.PositionType === "grid") {
+    }
+    else {
         throw Error("Invalid element positioning type in arguements");
-    }*/
+    }
     //do some stuff based on the
     loadZip(config);
 }
@@ -47,8 +59,8 @@ function loadZip(config) {
         let slideSizeX = slideShowGlobals["p:presentation"]["p:sldSz"][0]["$"]["cx"];
         let slideSizeY = slideShowGlobals["p:presentation"]["p:sldSz"][0]["$"]["cy"];
         //Place elements in right position for HTML
-        let slideAttributes = yield ziphandler_1.default.parseSlideAttributes("ppt/slides/slide2.xml");
-        let slideRelations = yield ziphandler_1.default.parseSlideAttributes("ppt/slides/_rels/slide2.xml.rels"); //contains references to links,images and etc.
+        let slideAttributes = yield ziphandler_1.default.parseSlideAttributes(format("ppt/slides/slide{0}.xml", config.slideNum));
+        let slideRelations = yield ziphandler_1.default.parseSlideAttributes(format("ppt/slides/_rels/slide{0}.xml.rels", config.slideNum)); //contains references to links,images and etc.
         console.log(JSON.stringify(slideAttributes));
         //Parse ppt/presentation.xml and get size
         let scaler = new gridscalerts_1.default(slideSizeX, slideSizeY, 12);

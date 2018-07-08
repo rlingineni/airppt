@@ -1,5 +1,5 @@
 require("module-alias/register");
-const argv = require("optimist").default({ PositionType: "abs" }).argv;
+const argv = require("optimist").default({ PositionType: "abs", slide: 1 }).argv;
 import GridScaler from "./gridscalerts";
 import { WriteOutputFile, CSSGenerator, HTMLGenerator } from "@generators/index";
 import ZipHandler from "@helpers/ziphandler";
@@ -9,22 +9,31 @@ import { SpecialityType } from "@models/pptelement";
 import { PositionType } from "@models/css";
 import { BuildOptions } from "@models/options";
 
+import * as format from "string-template";
+
 GenerateUI();
 
 export default function GenerateUI() {
 	let config: BuildOptions = {
 		PositionType: argv.PositionType,
-		powerpointFilePath: "../TeluguApp.pptx"
+		powerpointFilePath: "../TeluguApp.pptx",
+		slideNum: argv.slide
 	};
 
-	/*if (argv.input || argv.i) {
-		config.powerpointFilePath = argv.input || argv.i;
+	if (argv.input || argv.i) {
+		config.powerpointFilePath = "../" + (argv.input || argv.i);
 	} else {
-		throw Error("No input filepath was given to powerpoint file");
-	}*/
+		throw Error("No input argument with name of powerpoint file was given");
+	}
 
 	if (argv.position || argv.p) {
 		config.PositionType = argv.position || argv.p;
+	}
+
+	if (argv.slide || argv.s) {
+		config.slideNum = argv.slide || argv.s;
+	} else {
+		throw Error("No slide number was given!");
 	}
 
 	if (config.PositionType === "abs") {
@@ -46,8 +55,8 @@ async function loadZip(config: BuildOptions) {
 	let slideSizeY = slideShowGlobals["p:presentation"]["p:sldSz"][0]["$"]["cy"];
 
 	//Place elements in right position for HTML
-	let slideAttributes = await ZipHandler.parseSlideAttributes("ppt/slides/slide2.xml");
-	let slideRelations = await ZipHandler.parseSlideAttributes("ppt/slides/_rels/slide2.xml.rels"); //contains references to links,images and etc.
+	let slideAttributes = await ZipHandler.parseSlideAttributes(format("ppt/slides/slide{0}.xml", config.slideNum));
+	let slideRelations = await ZipHandler.parseSlideAttributes(format("ppt/slides/_rels/slide{0}.xml.rels", config.slideNum)); //contains references to links,images and etc.
 	console.log(JSON.stringify(slideAttributes));
 
 	//Parse ppt/presentation.xml and get size

@@ -1,5 +1,6 @@
 node_modules/*
-/built/*
-/output/*
+built/
+output/
 
 samples/Electron-Apps/alphabetter/node_modules/
+
