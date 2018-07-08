@@ -1,7 +1,7 @@
 # AirPPT
 
 ### Get Started
-###### Making a UI Powerpoint
+##### Making a UI Powerpoint
 1. Create a blank powerpoint, call it whatever.
 
 2. Delete everything on the slides, no placeholders or anything (a blank canvas).
@@ -12,7 +12,7 @@
 
 5. Add a 'textbox', note how they are different than rectangles (usually transparent and no outline)
 
-###### The program 
+##### The program 
 1. Clone/Download this project. 
 
 2. Move the powerpoint from step one into this folder
@@ -27,9 +27,10 @@ node main.js -i whatevermypowerpoint.pptx
 
 You can also pass in additional params like:
 
-[slide][s] - The slide number you want to generate HTML/CSS for
-[position][p] - `grid` or `abs`. If you choose grid, the layout will be proportional (better for responsive designs)
-
+| Args     | Value           | Def. |
+| ------------- |:-------------:| -----|
+| [--slide][-s]     | 2 | The slide number you want to generate HTML/CSS for |
+| [--position][-p]     | `grid` or `abs` |  If you choose grid, the html element layout will be column row based, and absolute is coordinate based|
 
 
 4. Check the contents of the `output` folder. It should have an index.html and an abs.css (or grid.css) depending on how you wanted the elements to be laid out.
