@@ -26,6 +26,7 @@ node main.js -i whatevermypowerpoint.pptx
 ```
 
 You can also pass in additional params like:
+
 [slide][s] - The slide number you want to generate HTML/CSS for
 [position][p] - `grid` or `abs`. If you choose grid, the layout will be proportional (better for responsive designs)
 
