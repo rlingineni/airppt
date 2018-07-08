@@ -21,30 +21,34 @@ GenerateUI();
 function GenerateUI() {
     console.log(argv);
     let config = {
-        PositionType: "abs",
-        powerpointFileName: "../TeluguApp.pptx"
+        PositionType: argv.PositionType,
+        powerpointFilePath: "../TeluguApp.pptx"
     };
+    /*if (argv.input || argv.i) {
+        config.powerpointFilePath = argv.input;
+    } else {
+        throw Error("No input filepath was given to powerpoint file");
+    }
+
     if (config.PositionType === "abs") {
-    }
-    else if (config.PositionType === "grid") {
-    }
-    else {
+    } else if (config.PositionType === "grid") {
+    } else {
         throw Error("Invalid element positioning type in arguements");
-    }
+    }*/
     //do some stuff based on the
     loadZip(config);
 }
 exports.default = GenerateUI;
 function loadZip(config) {
     return __awaiter(this, void 0, void 0, function* () {
-        yield ziphandler_1.default.loadZip(config.powerpointFileName);
+        yield ziphandler_1.default.loadZip(config.powerpointFilePath);
         let slideShowGlobals = yield ziphandler_1.default.parseSlideAttributes("ppt/presentation.xml");
         let slideShowTheme = yield ziphandler_1.default.parseSlideAttributes("ppt/theme/theme1.xml");
         let slideSizeX = slideShowGlobals["p:presentation"]["p:sldSz"][0]["$"]["cx"];
         let slideSizeY = slideShowGlobals["p:presentation"]["p:sldSz"][0]["$"]["cy"];
         //Place elements in right position for HTML
-        let slideAttributes = yield ziphandler_1.default.parseSlideAttributes("ppt/slides/slide5.xml");
-        let slideRelations = yield ziphandler_1.default.parseSlideAttributes("ppt/slides/_rels/slide5.xml.rels"); //contains references to links,images and etc.
+        let slideAttributes = yield ziphandler_1.default.parseSlideAttributes("ppt/slides/slide2.xml");
+        let slideRelations = yield ziphandler_1.default.parseSlideAttributes("ppt/slides/_rels/slide2.xml.rels"); //contains references to links,images and etc.
         console.log(JSON.stringify(slideAttributes));
         //Parse ppt/presentation.xml and get size
         let scaler = new gridscalerts_1.default(slideSizeX, slideSizeY, 12);
@@ -59,7 +63,7 @@ function loadZip(config) {
             let pptElement = pptElementParser.getProcessedElement(element);
             if (pptElement) {
                 console.log(pptElement);
-                let rendererType = pptElement.specialityType == pptelement_1.SpecialityType.None ? pptElement.shapeType : pptElement.specialityType; //override with speciality choice
+                let rendererType = pptElement.specialityType == pptelement_1.SpecialityType.None ? pptElement.shapeType : pptElement.specialityType; //set the renderer type dynamically
                 console.log(rendererType);
                 //Convert PPT shapes
                 let renderedElement = new ShapeRenderers[rendererType](scaler, pptElement, slideShowGlobals, slideShowTheme, css_1.PositionType.Absolute);

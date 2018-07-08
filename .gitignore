@@ -2,3 +2,4 @@ node_modules/*
 /built/*
 /output/*
 
+samples/Electron-Apps/alphabetter/node_modules/

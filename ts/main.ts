@@ -12,11 +12,20 @@ import { BuildOptions } from "@models/options";
 GenerateUI();
 
 export default function GenerateUI() {
-	console.log(argv);
 	let config: BuildOptions = {
-		PositionType: "abs",
-		powerpointFileName: "../TeluguApp.pptx"
+		PositionType: argv.PositionType,
+		powerpointFilePath: "../TeluguApp.pptx"
 	};
+
+	/*if (argv.input || argv.i) {
+		config.powerpointFilePath = argv.input || argv.i;
+	} else {
+		throw Error("No input filepath was given to powerpoint file");
+	}*/
+
+	if (argv.position || argv.p) {
+		config.PositionType = argv.position || argv.p;
+	}
 
 	if (config.PositionType === "abs") {
 	} else if (config.PositionType === "grid") {
@@ -29,7 +38,7 @@ export default function GenerateUI() {
 }
 
 async function loadZip(config: BuildOptions) {
-	await ZipHandler.loadZip(config.powerpointFileName);
+	await ZipHandler.loadZip(config.powerpointFilePath);
 	let slideShowGlobals = await ZipHandler.parseSlideAttributes("ppt/presentation.xml");
 	let slideShowTheme = await ZipHandler.parseSlideAttributes("ppt/theme/theme1.xml");
 
@@ -37,8 +46,8 @@ async function loadZip(config: BuildOptions) {
 	let slideSizeY = slideShowGlobals["p:presentation"]["p:sldSz"][0]["$"]["cy"];
 
 	//Place elements in right position for HTML
-	let slideAttributes = await ZipHandler.parseSlideAttributes("ppt/slides/slide5.xml");
-	let slideRelations = await ZipHandler.parseSlideAttributes("ppt/slides/_rels/slide5.xml.rels"); //contains references to links,images and etc.
+	let slideAttributes = await ZipHandler.parseSlideAttributes("ppt/slides/slide2.xml");
+	let slideRelations = await ZipHandler.parseSlideAttributes("ppt/slides/_rels/slide2.xml.rels"); //contains references to links,images and etc.
 	console.log(JSON.stringify(slideAttributes));
 
 	//Parse ppt/presentation.xml and get size
@@ -55,9 +64,10 @@ async function loadZip(config: BuildOptions) {
 	for (let element of slideElements) {
 		//parse element body
 		let pptElement = pptElementParser.getProcessedElement(element);
+
 		if (pptElement) {
 			console.log(pptElement);
-			let rendererType = pptElement.specialityType == SpecialityType.None ? pptElement.shapeType : pptElement.specialityType; //override with speciality choice
+			let rendererType = pptElement.specialityType == SpecialityType.None ? pptElement.shapeType : pptElement.specialityType; //set the renderer type dynamically
 			console.log(rendererType);
 			//Convert PPT shapes
 			let renderedElement = new ShapeRenderers[rendererType](scaler, pptElement, slideShowGlobals, slideShowTheme, PositionType.Absolute);

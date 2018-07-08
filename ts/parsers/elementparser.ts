@@ -15,7 +15,6 @@ class PowerpointElementParser {
 
 	public getProcessedElement(rawElement): PowerpointElement {
 		this.element = rawElement;
-		let isImage = false;
 
 		let elementName: string = "";
 		if (this.element["p:nvSpPr"]) {
@@ -23,13 +22,13 @@ class PowerpointElementParser {
 				this.element["p:nvSpPr"][0]["p:cNvPr"][0]["$"]["title"] ||
 				this.element["p:nvSpPr"][0]["p:cNvPr"][0]["$"]["name"].replace(/\s/g, "");
 		} else {
-			//if the element is an image
+			//if the element is an image, get basic info like this
 			elementName =
 				this.element["p:nvPicPr"][0]["p:cNvPr"][0]["$"]["title"] ||
 				this.element["p:nvPicPr"][0]["p:cNvPr"][0]["$"]["name"].replace(/\s/g, "");
 		}
 
-		//elements must have a position, or else skip them TO-DO: Allow Placeholder positions
+		//elements must have a position, or else ignore them. TO-DO: Allow Placeholder positions
 		if (!this.element["p:spPr"][0]["a:xfrm"]) {
 			return null;
 		}

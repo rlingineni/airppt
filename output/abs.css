@@ -6,283 +6,79 @@
     border-style: dotted;
 }
 
-#BackgroundImage.position {
+#NextLetterButton.position {
     position: absolute;
-    top: -0.7645144356955381px;
-    left: 0px;
+    top: 597.6567979002625px;
+    left: 1106.5727034120735px;
 }
 
-#BackgroundImage.shape {
-    width: 1280px;
-    height: 569.8328608923885px;
-    background: url(assets/media/image3.jpeg);
-    display: table;
+#NextLetterButton.shape {
+    width: 0;
+    height: 0;
+    border-top: 42.66666666666667px solid transparent;
+    border-left: 88.88892388451444px solid #4472C4;
+    border-bottom: 42.66666666666667px solid transparent;
 }
 
-#Rectangle4.position {
+#RestartButton.position {
     position: absolute;
-    top: 491.81963254593177px;
-    left: 0px;
+    top: 599.4344356955381px;
+    left: 926.5453018372704px;
 }
 
-#Rectangle4.shape {
-    width: 1280px;
-    height: 177.4176377952756px;
-    background: #F2F2F2;
-    display: table;
-}
-
-#Rectangle13.position {
-    position: absolute;
-    top: 609.189501312336px;
-    left: 77.47926509186352px;
-}
-
-#Rectangle13 .font {
-    font-size: 14px;
-    font-family: "Helvetica", Times, serif;
+#RestartButton .font {
+    font-size: 28px;
+    font-family: "Times", Times, serif;
     color: #000000;
     text-align: center;
     vertical-align: middle;
     display: table-cell;
 }
 
-#Rectangle13.shape {
-    width: 104.28314960629922px;
-    height: 37.70771653543307px;
-    background: #F2F2F2;
+#RestartButton.shape {
+    width: 149.33333333333334px;
+    height: 85.33343832020998px;
+    background: #F44D6A;
     display: table;
 }
 
-#Rectangle14.position {
+#LetterBox.position {
     position: absolute;
-    top: 614.1862467191602px;
-    left: 357.19853018372703px;
+    top: -47.19643044619423px;
+    left: 131.5069816272966px;
 }
 
-#Rectangle14 .font {
-    font-size: 14px;
-    font-family: "Helvetica", Times, serif;
-    color: #000000;
+#LetterBox .font {
+    font-size: 413px;
+    font-family: "lucida grande", Times, serif;
+    color: #222222;
     text-align: center;
     vertical-align: middle;
     display: table-cell;
 }
 
-#Rectangle14.shape {
-    width: 104.28314960629922px;
-    height: 37.70771653543307px;
-    background: #F2F2F2;
-    display: table;
-}
-
-#Rectangle15.position {
-    position: absolute;
-    top: 617.4848293963255px;
-    left: 728.211968503937px;
-}
-
-#Rectangle15 .font {
-    font-size: 14px;
-    font-family: "Helvetica", Times, serif;
-    color: #000000;
-    text-align: center;
-    vertical-align: middle;
-    display: table-cell;
-}
-
-#Rectangle15.shape {
-    width: 104.28314960629922px;
-    height: 37.70771653543307px;
-    background: #F2F2F2;
-    display: table;
-}
-
-#Rectangle16.position {
-    position: absolute;
-    top: 615.4777952755906px;
-    left: 1105.9177952755906px;
-}
-
-#Rectangle16 .font {
-    font-size: 14px;
-    font-family: "Helvetica", Times, serif;
-    color: #000000;
-    text-align: center;
-    vertical-align: middle;
-    display: table-cell;
-}
-
-#Rectangle16.shape {
-    width: 104.28314960629922px;
-    height: 37.70771653543307px;
-    background: #F2F2F2;
-    display: table;
-}
-
-#Rectangle17.position {
-    position: absolute;
-    top: 653.5889763779528px;
-    left: 0px;
-}
-
-#Rectangle17.shape {
-    width: 1280px;
-    height: 66.41102362204725px;
-    background: #FFFFFF;
-    display: table;
-}
-
-#Rectangle18.position {
-    position: absolute;
-    top: 669.2372703412074px;
-    left: 427.6622572178478px;
-}
-
-#Rectangle18 .font {
-    font-size: 10.5px;
-    font-family: "Helvetica", Times, serif;
-    color: #000000;
-    text-align: center;
-    vertical-align: middle;
-    display: table-cell;
-}
-
-#Rectangle18.shape {
-    width: 406.9952755905512px;
-    height: 36.82194225721785px;
+#LetterBox.shape {
+    width: 994.1917060367455px;
+    height: 646.6308661417323px;
     background: transparent;
     display: table;
 }
 
-#Rectangle19.position {
+#Rectangle2.position {
     position: absolute;
-    top: 670.8171128608924px;
-    left: -17.680209973753282px;
+    top: 56.547926509186354px;
+    left: 278.7945406824147px;
 }
 
-#Rectangle19 .font {
-    font-size: 10.5px;
-    font-family: "Helvetica", Times, serif;
-    color: #0070C0;
-    text-align: center;
-    vertical-align: middle;
-    display: table-cell;
+#Rectangle2.border {
+    border-style: solid;
+    border-color: 000000;
+    border-width: 6px;
 }
 
-#Rectangle19.shape {
-    width: 406.9952755905512px;
-    height: 36.82194225721785px;
+#Rectangle2.shape {
+    width: 687.7807874015748px;
+    height: 515.5068766404199px;
     background: transparent;
     display: table;
-}
-
-#Rectangle20.position {
-    position: absolute;
-    top: 670.8170078740158px;
-    left: 923.5616797900262px;
-}
-
-#Rectangle20 .font {
-    font-size: 10.5px;
-    font-family: "Helvetica", Times, serif;
-    color: #000000;
-    text-align: center;
-    vertical-align: middle;
-    display: table-cell;
-}
-
-#Rectangle20.shape {
-    width: 406.9952755905512px;
-    height: 36.82194225721785px;
-    background: transparent;
-    display: table;
-}
-
-#Rectangle24.position {
-    position: absolute;
-    top: 111.21228346456694px;
-    left: 276.4002099737533px;
-}
-
-#Rectangle24 .font {
-    font-size: 60px;
-    font-family: "Helvetica", Times, serif;
-    color: #000000;
-    text-align: center;
-    vertical-align: middle;
-    display: table-cell;
-}
-
-#Rectangle24.shape {
-    width: 760.5848818897638px;
-    height: 203.5862467191601px;
-    background: transparent;
-    display: table;
-}
-
-#Rectangle25.position {
-    position: absolute;
-    top: 266.9867716535433px;
-    left: 490.20682414698166px;
-}
-
-#Rectangle25 .font {
-    font-size: 14px;
-    font-family: "Helvetica", Times, serif;
-    color: #000000;
-    text-align: center;
-    vertical-align: middle;
-    display: table-cell;
-}
-
-#Rectangle25.shape {
-    width: 299.5862467191601px;
-    height: 79.4482939632546px;
-    background: transparent;
-    display: table;
-}
-
-#Graphic10.position {
-    position: absolute;
-    top: 513.3804724409449px;
-    left: 725.8446194225722px;
-}
-
-#Graphic10.shape {
-    width: 108.81291338582677px;
-    height: 108.81291338582677px;
-}
-
-#Graphic12.position {
-    position: absolute;
-    top: 521.4848293963255px;
-    left: 1127.0593175853019px;
-}
-
-#Graphic12.shape {
-    width: 96px;
-    height: 96px;
-}
-
-#Picture21.position {
-    position: absolute;
-    top: 515.6780052493439px;
-    left: 363.79958005249347px;
-}
-
-#Picture21.shape {
-    width: 95.31475065616799px;
-    height: 95.31475065616799px;
-}
-
-#Picture22.position {
-    position: absolute;
-    top: 484.6845144356956px;
-    left: 47.6844094488189px;
-}
-
-#Picture22.shape {
-    width: 157.54341207349083px;
-    height: 157.54341207349083px;
 }

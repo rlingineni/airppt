@@ -16,7 +16,7 @@ export default class Triangle extends ElementRenderer {
             width: 0;
             height: 0;
             border-top: {height}px solid transparent;
-            border-left: {width}px solid #{background};
+            border-left: {width}px solid {background};
             border-bottom: {height}px solid transparent;
         }
         `,
@@ -24,7 +24,7 @@ export default class Triangle extends ElementRenderer {
 				name: element.name,
 				width: scaler.getScaledValue(element.elementOffsetPosition.cx),
 				height: scaler.getScaledValue(element.elementOffsetPosition.cy) / 2,
-				background: (element.shape.fill.fillType == FillType.Solid? "#"+element.shape.fill.fillColor : "transparent")
+				background: element.shape.fill.fillType == FillType.Solid ? "#" + element.shape.fill.fillColor : "transparent"
 			}
 		);
 		this.addCSSAttribute(css);
