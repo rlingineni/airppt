@@ -6,26 +6,25 @@ It was built from scratch. Type friendly, and extensible. Read on to get started
 
 ### Quick Start
 
-You can use this template [powerpoint](https://github.com/rlingineni/airppt/blob/master/sample.pptx) and run through the slides to see the different outputs.
-
 ```
 git clone https://github.com/rlingineni/airppt
-```
-
-```
 cd airppt
-```
-
---- add your pptx that you want to convert in this folder ---
-
-```
 npm install
 npm run build
 cd built
-node main.js -i sample.pptx
+
+//you can change sample ppt, to your own if you want, just put your file in the root directory
+
+node main.js -i sample.pptx -s 2
+
+//see the output html files
+
+cd output
+ls output
+
 ```
 
--- check the output folder for some HTML and CSS --
+Open an issue if it didn't work.
 
 Here are the params for the program:
 
