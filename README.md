@@ -2,7 +2,7 @@
 
 AirPPT is a program to allow you to go from powerpoint slide to working (workable) HTML. No dirty stuff.
 
-It was built from scratch. Type friendly, and extensible. Read here
+It was built from scratch. Type friendly, and extensible. Read on to get started or the [wiki](https://github.com/rlingineni/airppt/wiki) to get started.
 
 ### Quick Start
 
