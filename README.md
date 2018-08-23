@@ -39,7 +39,8 @@ I wish I had more time for this project. Willing to help anyway I can if anyone 
 
 - Make a global NPM CLI
 - Support configurable Output and Input Path
-- Add more renderers that convert shapes (rectangle, shape, textbox)
+- Add more renderers that convert shapes
+- Add custom extensions that can add elements like iframes
 
 ### Supported Elements
 
