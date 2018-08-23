@@ -17,7 +17,7 @@ export default class Ellipse extends ElementRenderer {
 			`#{name}.shape{
             width:{width}px;
             height:{height}px;    
-            background: #{background}; 
+            background: {background}; 
             -moz-border-radius: 50%;
             -webkit-border-radius: 50%;
             border-radius: 50%;

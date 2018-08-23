@@ -6,6 +6,9 @@ import * as jquery from "jquery";
 
 const beautify = require("beautify");
 
+/**
+ * Every Shape that is implemented must extend this renderer
+ */
 abstract class ElementRenderer {
 	protected elementCSS = [];
 	protected $ = jquery(new jsdom.JSDOM().window);

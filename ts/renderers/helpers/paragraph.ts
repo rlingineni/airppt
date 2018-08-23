@@ -2,7 +2,7 @@ import { PowerpointElement } from "@models/pptelement";
 import * as format from "string-template";
 
 /**
- * Pass in a Text
+ * Pass in a PPT Element and then generate the Text CSS
  */
 export default function GenerateParagraphCSS(paragraph: PowerpointElement["paragraph"], elementName: string): string {
 	let css = format(

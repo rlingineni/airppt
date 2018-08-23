@@ -2,8 +2,11 @@ import { PowerpointElement, BorderType } from "@models/pptelement";
 import { CheckValidObject as checkPath } from "@helpers/checkobj";
 import ColorParser from "./colorparser";
 
+/**
+ * Parses XML that deals with lines for shapes
+ */
 export default class LineParser {
-	public static extractLineElements(element: PowerpointElement): PowerpointElement["shape"]["border"] {
+	public static extractLineElements(element): PowerpointElement["shape"]["border"] {
 		let shapeProperties = element["p:spPr"][0];
 		if (!shapeProperties["a:ln"] || shapeProperties["a:ln"][0]["a:noFill"]) {
 			return null;

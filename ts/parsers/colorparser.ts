@@ -2,6 +2,9 @@ import { CheckValidObject as checkPath, CheckValidObject } from "@helpers/checko
 import RelationParser from "./relparser";
 import { PowerpointElement, ElementType, TextAlignment, FontAttributes, SpecialityType, FillType } from "@models/pptelement";
 
+/**
+ * Parse the color of elements
+ */
 export default class ColorParser {
 	static slideShowTheme;
 	/**

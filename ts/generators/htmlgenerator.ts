@@ -1,5 +1,5 @@
 /**
- * Generates HTML output and adds relevant classes to elements
+ * Generates HTML output and adds relevant classes to elements, doesn't write to file
  */
 
 import * as jsdom from "jsdom";

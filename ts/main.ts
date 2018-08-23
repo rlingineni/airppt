@@ -1,5 +1,5 @@
 require("module-alias/register");
-const argv = require("optimist").default({ PositionType: "abs", slide: 1 }).argv;
+const argv = require("optimist").default({ pos: "abs", slide: 1 }).argv;
 import GridScaler from "./gridscalerts";
 import { WriteOutputFile, CSSGenerator, HTMLGenerator } from "@generators/index";
 import ZipHandler from "@helpers/ziphandler";
@@ -15,10 +15,17 @@ GenerateUI();
 
 export default function GenerateUI() {
 	let config: BuildOptions = {
-		PositionType: argv.PositionType,
-		powerpointFilePath: "../TeluguApp.pptx",
+		PositionType: PositionType.Absolute,
+		powerpointFilePath: "../sample.pptx",
 		slideNum: argv.slide
 	};
+
+	if (argv.pos === "abs") {
+	} else if (argv.pos === "grid") {
+		config.PositionType = PositionType.Grid;
+	} else {
+		throw Error("Invalid element positioning type in arguements");
+	}
 
 	if (argv.input || argv.i) {
 		config.powerpointFilePath = "../" + (argv.input || argv.i);
@@ -36,13 +43,7 @@ export default function GenerateUI() {
 		throw Error("No slide number was given!");
 	}
 
-	if (config.PositionType === "abs") {
-	} else if (config.PositionType === "grid") {
-	} else {
-		throw Error("Invalid element positioning type in arguements");
-	}
-
-	//do some stuff based on the
+	//load the powerpoint zip file
 	loadZip(config);
 }
 
@@ -61,7 +62,7 @@ async function loadZip(config: BuildOptions) {
 
 	//Parse ppt/presentation.xml and get size
 	let scaler = new GridScaler(slideSizeX, slideSizeY, 12);
-	let htmlGen = new HTMLGenerator(PositionType.Absolute);
+	let htmlGen = new HTMLGenerator(config.PositionType);
 	let pptElementParser = new PowerpointElementParser(slideShowGlobals, slideShowTheme, slideRelations);
 
 	let slideShapes = slideAttributes["p:sld"]["p:cSld"][0]["p:spTree"][0]["p:sp"];
@@ -79,7 +80,7 @@ async function loadZip(config: BuildOptions) {
 			let rendererType = pptElement.specialityType == SpecialityType.None ? pptElement.shapeType : pptElement.specialityType; //set the renderer type dynamically
 			console.log(rendererType);
 			//Convert PPT shapes
-			let renderedElement = new ShapeRenderers[rendererType](scaler, pptElement, slideShowGlobals, slideShowTheme, PositionType.Absolute);
+			let renderedElement = new ShapeRenderers[rendererType](scaler, pptElement, slideShowGlobals, slideShowTheme, config.PositionType);
 			let elementCSS = renderedElement.getCSS();
 			let html = renderedElement.render();
 

@@ -1,5 +1,7 @@
+import { PositionType } from "@models/css";
+
 export interface BuildOptions {
-	PositionType: string;
+	PositionType: PositionType;
 	GridSize?: number;
 	outputPath?: string;
 	powerpointFilePath: string;

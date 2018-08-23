@@ -1,3 +1,6 @@
+/**
+ * The model for a parsed Powerpoint Element which the parsers generate
+ */
 export interface PowerpointElement {
 	name: string; //or the name combined
 	shapeType: ElementType; //

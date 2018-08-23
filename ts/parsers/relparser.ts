@@ -3,6 +3,9 @@ import { CheckValidObject as checkPath, CheckValidObject } from "@helpers/checko
 import { PowerpointElement, ElementType, TextAlignment, FontAttributes, SpecialityType, LinkType } from "@models/pptelement";
 import { link } from "fs";
 
+/**
+ * Parse everything that deals with relations such as hyperlinks and local images
+ */
 export default class SlideRelationsParser {
 	static slideRels;
 	/**

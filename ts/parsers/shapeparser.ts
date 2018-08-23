@@ -3,6 +3,9 @@ import ColorParser from "./colorparser";
 import LineParser from "./lineparser";
 import { PowerpointElement, ElementType, TextAlignment, FontAttributes, SpecialityType, FillType } from "@models/pptelement";
 
+/**
+ * Parse the shape types and etc.
+ */
 export default class ShapeParser {
 	public static determineShapeType(prst): ElementType {
 		switch (prst) {

@@ -5,6 +5,9 @@ import ShapeParser from "./shapeparser";
 import ParagraphParser from "./paragraphparser";
 import SlideRelationsParser from "./relparser";
 
+/**
+ * Entry point for all Parsers
+ */
 class PowerpointElementParser {
 	private element;
 
