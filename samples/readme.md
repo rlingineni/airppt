@@ -1,4 +1,4 @@
-You can use AirPPT to for websites and web apps. Checkout alphabetter to see a letter traversing one.
+You can use AirPPT to for websites and web apps. Checkout alphabetter to see a letter traversing electron app sample.
 
 ## Going from AirPPT to Electron
 
