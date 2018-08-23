@@ -13,15 +13,10 @@ npm install
 npm run build
 cd built
 
-//you can change sample ppt, to your own if you want, just put your file in the root directory
+node main.js -i sample.pptx -s 2 //you can change sample ppt, just put your pptx in the root directory
 
-node main.js -i sample.pptx -s 2
-
-//see the output html files
-
-cd output
+cd output //see the output html files
 ls output
-
 ```
 
 Open an issue if it didn't work.
