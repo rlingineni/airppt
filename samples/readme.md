@@ -4,7 +4,6 @@ You may build the UI from scratch using **Slide 2** of the [sample](https://gith
 
 ```
 node main.js -i sample.pptx --slide 2
-
 ```
 
 ## Going from AirPPT to Electron
