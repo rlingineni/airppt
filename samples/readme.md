@@ -1,4 +1,11 @@
-You can use AirPPT to for websites and web apps. Checkout alphabetter to see a letter traversing electron app sample.
+You can use AirPPT to for websites and web apps. Checkout alphabetter to see a letter traversing electron app sample. 
+
+You may build the UI from scratch using **Slide 2** of the [sample](https://github.com/rlingineni/airppt/blob/master/sample.pptx) deck.
+
+```
+node main.js -i sample.pptx --slide 2
+
+```
 
 ## Going from AirPPT to Electron
 
