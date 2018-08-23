@@ -1,6 +1,6 @@
-You can use AirPPT to for websites and web apps. Checkout alphabetter to see a letter traversing electron app sample. 
+You can use AirPPT to for websites and web apps. Checkout the [alphabetter](https://github.com/rlingineni/airppt/tree/master/samples/alphabetter) example to see a letter traversing electron app. The generated source code powers the [UI](https://github.com/rlingineni/airppt/tree/master/samples/alphabetter/app).
 
-You may build the UI from scratch using **Slide 2** of the [sample](https://github.com/rlingineni/airppt/blob/master/sample.pptx) deck.
+You may build the UI from scratch using **Slide 2** of the [sample](https://github.com/rlingineni/airppt/blob/master/sample.pptx) deck. 
 
 ```
 node main.js -i sample.pptx --slide 2
@@ -28,4 +28,4 @@ That's it! Add more electron samples to this repo.
 
 ### Examples:
 
-Alphabetter - Application that cycles through the alphabet
+[Alphabetter](https://github.com/rlingineni/airppt/tree/master/samples/alphabetter) - Application that cycles through the alphabet
