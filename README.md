@@ -30,10 +30,10 @@ node main.js -i sample.pptx
 Here are the params for the program:
 
 | Long Args |   Short Arg          |      Value      | Desc.                                                                                                  | Default |
-| ---------------- | :-------------: | ------------------------------------------------------------------------------------------------------ | ------- |
+| ---------------- | --------|-------------| ------------------------------------------------------------------------------------------------------ | ------- |
 | [--input]| [-i]    |   sample.pptx   | The name of the powerpoint file that sits in the folder                                                |
 | [--slide] |[-s]    |        2        | The slide number you want to generate HTML/CSS for                                                     | 1       |
-| [--position]| [-p] | `grid` or `abs` | If you choose grid, the html element layout will be column row based, and absolute is coordinate based | `grid`  |
+| [--pos]| [-p] | `grid` or `abs` | If you choose grid, the html element layout will be column row based, and absolute is coordinate based | `grid`  |
 
 4. Check the contents of the `output` folder. It should have an index.html and an abs.css (or grid.css) depending on how you wanted the elements to be laid out.
 
