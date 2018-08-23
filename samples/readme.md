@@ -10,9 +10,11 @@ node main.js -i sample.pptx --slide 2
 
 1.  Generate your HTML/CSS files using AirPPT. Read instructions [here](https://github.com/rlingineni/airppt)
 
-2.  Checkout this [getting started](https://electronjs.org/docs/tutorial/first-app) guide with electron, if you've never used it before. Replace the path to `index.html` in `main.js` with the with one AirPPT generated
+2.  Checkout this [getting started](https://electronjs.org/docs/tutorial/first-app) guide with electron, if you've never used it before. 
 
-3.  Update the window settings for absolutely positioned items:
+Replace the path to `index.html` in your Electron app's `main.js` with the with the new index file AirPPT generated
+
+3.  Update the window settings to match an absolutely positioned coordinate system:
 
 ```
  win = new BrowserWindow({width: 1200, height: 720})
