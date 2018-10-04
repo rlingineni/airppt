@@ -65,8 +65,8 @@ async function loadZip(config: BuildOptions) {
 	let htmlGen = new HTMLGenerator(config.PositionType);
 	let pptElementParser = new PowerpointElementParser(slideShowGlobals, slideShowTheme, slideRelations);
 
-	let slideShapes = slideAttributes["p:sld"]["p:cSld"][0]["p:spTree"][0]["p:sp"];
-	let slideImages = slideAttributes["p:sld"]["p:cSld"][0]["p:spTree"][0]["p:pic"];
+	let slideShapes = slideAttributes["p:sld"]["p:cSld"][0]["p:spTree"][0]["p:sp"] || [];
+	let slideImages = slideAttributes["p:sld"]["p:cSld"][0]["p:spTree"][0]["p:pic"] || [];
 
 	let slideElements = slideShapes.concat(slideImages);
 	let elementsCSS = [];
