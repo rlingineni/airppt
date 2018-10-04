@@ -16,7 +16,7 @@ cd built
 
 node main.js -i sample.pptx -s 2 //you can change sample ppt, just put your pptx in the root directory
 
-cd output //see the output html files
+cd ../output //see the output html files
 ls output
 ```
 
