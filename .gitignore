@@ -1,7 +1,7 @@
 node_modules/*
 built/
 output/
-
+node_modules/
 samples/Electron-Apps/alphabetter/node_modules/
 
 .DS_Store

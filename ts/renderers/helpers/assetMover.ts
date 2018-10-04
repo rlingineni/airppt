@@ -12,14 +12,14 @@ async function copyAssetToOutputDirectory(assetPath, convertTifftoPNG: boolean) 
 	let fileName = assetPath.split("/").pop();
 
 	//copy the file to the output
-	await WriteOutputFile("../output/assets/media/" + fileName, assetData, { encoding: "base64" });
+	await WriteOutputFile("assets/media/" + fileName, assetData, { encoding: "base64" });
 
-	//if it is an ppt image, then do this step
+	//if it is an ppt image (ppt converts native images to tiffs), then do this step
 	if (convertTifftoPNG) {
 		let fileExtension = fileName.split(".").pop();
 		if (fileExtension === "tiff") {
 			let newFileName = fileName.split(".")[0] + ".png"; //convert to png
-			convertToPNG("../output/assets/media/" + fileName, "../output/assets/media/" + newFileName);
+			convertToPNG("../output/assets/media/" + fileName, "assets/media/" + newFileName);
 		}
 	}
 }

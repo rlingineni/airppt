@@ -38,7 +38,7 @@ export default function GenerateUI() {
 	}
 
 	if (argv.slide || argv.s) {
-		config.slideNum = argv.slide || argv.s;
+		config.slideNum = argv.s || argv.slide;
 	} else {
 		throw Error("No slide number was given!");
 	}

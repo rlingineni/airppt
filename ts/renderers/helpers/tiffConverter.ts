@@ -11,5 +11,5 @@ export default function convertToPNG(inputPath, outputPath) {
 	const png = new PNG({ width, height });
 
 	png.data = data;
-	fs.writeFileSync(outputPath, PNG.sync.write(png));
+	fs.writeFileSync("../output/" + outputPath, PNG.sync.write(png));
 }
