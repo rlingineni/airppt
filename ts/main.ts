@@ -51,17 +51,17 @@ async function loadZip(config: BuildOptions) {
 	await ZipHandler.loadZip(config.powerpointFilePath);
 	let slideShowGlobals = await ZipHandler.parseSlideAttributes("ppt/presentation.xml");
 	let slideShowTheme = await ZipHandler.parseSlideAttributes("ppt/theme/theme1.xml");
-
 	let slideSizeX = slideShowGlobals["p:presentation"]["p:sldSz"][0]["$"]["cx"];
 	let slideSizeY = slideShowGlobals["p:presentation"]["p:sldSz"][0]["$"]["cy"];
 
 	//Place elements in right position for HTML
 	let slideAttributes = await ZipHandler.parseSlideAttributes(format("ppt/slides/slide{0}.xml", config.slideNum));
 	let slideRelations = await ZipHandler.parseSlideAttributes(format("ppt/slides/_rels/slide{0}.xml.rels", config.slideNum)); //contains references to links,images and etc.
-	console.log(JSON.stringify(slideAttributes));
 
 	//Parse ppt/presentation.xml and get size
 	let scaler = new GridScaler(slideSizeX, slideSizeY, 12);
+	let scaledSlideX = scaler.getScaledValue(slideSizeX);
+	let scaledSlideY = scaler.getScaledValue(slideSizeY);
 	let htmlGen = new HTMLGenerator(config.PositionType);
 	let pptElementParser = new PowerpointElementParser(slideShowGlobals, slideShowTheme, slideRelations);
 
@@ -91,7 +91,7 @@ async function loadZip(config: BuildOptions) {
 	}
 
 	//Create Output HTML file
-	WriteOutputFile("abs.css", CSSGenerator.generateCSS(PositionType.Absolute, elementsCSS));
+	WriteOutputFile("abs.css", CSSGenerator.generateCSS(PositionType.Absolute, elementsCSS, scaledSlideX, scaledSlideY));
 	WriteOutputFile("grid.css", CSSGenerator.generateCSS(PositionType.Grid, elementsCSS));
 	WriteOutputFile("index.html", htmlGen.getGeneratedHTML());
 }

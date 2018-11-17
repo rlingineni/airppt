@@ -10,16 +10,22 @@ class CSSGenerator {
 	static gridCSS = [];
 	static absoluteCSS = [];
 
-	public static generateCSS(posType: PositionType, cssElements: string[]) {
+	public static generateCSS(posType: PositionType, cssElements: string[], absoluteSizeX?: number, absoluteSizeY?: number) {
 		let css = "";
 		if (posType == PositionType.Absolute) {
-			this.absoluteCSS.push(`.wrapper {
+			this.absoluteCSS.push(
+				`.wrapper {
             position: fixed;
-            width: 1280px;
-            height: 720px;
+            width:` +
+					absoluteSizeX +
+					`px;
+            height:` +
+					absoluteSizeY +
+					`px;
             border-color: #000000;
             border-style: dotted
-		  }`);
+		  }`
+			);
 			this.absoluteCSS = this.absoluteCSS.concat(cssElements);
 			css = beautify(this.absoluteCSS.join(""), { format: "css" });
 		} else {
